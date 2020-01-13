@@ -1,0 +1,15 @@
+header {
+  display: flex;
+  justify-content: center;
+}
+
+.logo_gbaf {
+
+  height: 150px;
+  width: 200px;
+}
+
+.logo_gbaf > img {
+  height: 100%;
+  width: 100%;
+}

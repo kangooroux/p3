@@ -2,18 +2,24 @@
 require('../controller/frontend.php');
 
 try { // On essaie de faire des choses
-    if (isset($_GET['action'])) {
-        if ($_GET['action'] == 'listPosts') {
-            listPosts();
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+      if (isset($_POST['nom']) && ($_POST['prenom']) && ($_POST['userName']) && ($_POST['mdp']) && ($_POST['questionSecrete']) && ($_POST['reponseSecrete'])) {
+        inscriptionReussie();
+      }
+      elseif (isset($_POST['userNameMdpReset'])) {
+        // code...
+      }
+      else {
+        throw new Exception('Erreur');
+      }
+
+    }
+    elseif (isset($_GET['page'])) {
+        if ($_GET['page'] == 'inscription') {
+            inscription();
         }
-        elseif ($_GET['action'] == 'post') {
-            if (isset($_GET['id']) && $_GET['id'] > 0) {
-                post();
-            }
-            else {
-                // Erreur ! On arrête tout, on envoie une exception, donc au saute directement au catch
-                throw new Exception('Aucun identifiant de billet envoyé');
-            }
+        elseif ($_GET['page'] == 'oublimdp') {
+            oublimdp();
         }
         elseif ($_GET['action'] == 'addComment') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
@@ -30,22 +36,13 @@ try { // On essaie de faire des choses
                 throw new Exception('Aucun identifiant de billet envoyé');
             }
         }
-        elseif ($_GET['action'] == 'editComment') {
-            if (isset($_GET['id']) && $_GET['id'] > 0) {
-                if (!empty($_POST['comment'])) {
-                    editComment($_GET['id'], $_GET['postId'], $_POST['comment']);
-                }
-                else {
-                    displayComment($_GET['id']);
-                }
-            }
-            else {
-                throw new Exception('Aucun identifiant de commentaire trouvé');
-            }
-        }
+    }
+    elseif (isset($_POST['submit'])) {
+        inscriptionReussie();
     }
     else {
         connexion();
+        throw new Exception('Aucun identifiant de billet envoyé');
     }
 }
 catch(Exception $e) { // S'il y a eu une erreur, alors...

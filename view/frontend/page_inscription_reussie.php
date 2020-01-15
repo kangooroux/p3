@@ -2,7 +2,7 @@
 
 <?php ob_start(); ?>
 <h1>Connexion</h1>
-<p class="texte_lien_inscription">Vous n'avez pas de compte ? <a href="index.php/?page=inscription">S'inscrire</a></p>
+<p>Votre inscription s'est faite avec succès</p>
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 	<fieldset>
 	<p>

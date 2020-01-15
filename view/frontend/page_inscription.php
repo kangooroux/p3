@@ -9,6 +9,7 @@
     <label for="mdp">Mot de Passe :</label><input type="password" name="mdp" id="mdp" /><br /
     <label for="questionSecrete">Veuillez saisir un question secrète :</label><input name="questionSecrete" type="text" id="questionSecrete" /><br />
     <label for="reponseSecrete">Veuillez saisir la réponse à cette question :</label><input name="reponseSecrete" type="text" id="reponseSecrete" /><br />
+    <p><input type="submit" value="S'inscrire" /></p>
 </form>
 
 <?php $content = ob_get_clean(); ?>

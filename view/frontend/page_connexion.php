@@ -2,7 +2,8 @@
 
 <?php ob_start(); ?>
 <h1>Connexion</h1>
-<form method="post" action="connexion.php">
+<p class="texte_lien_inscription">Vous n'avez pas de compte ? <a href="../view/frontend/page_inscription.php">S'inscrire</a></p>
+<form method="post" action="page_connexion.php">
 	<fieldset>
 	<legend>Connexion</legend>
 	<p>
@@ -13,7 +14,6 @@
 	<p><input type="submit" value="Connexion" /></p>
 </form>
   <a href="../view/frontend/page_oublimdp.php">Mot de passe oublié ?</a>
-  <a href="../view/frontend/page_inscription.php">Pas encore inscrit ?</a>
 <?php $content = ob_get_clean(); ?>
 
 <?php require('template.php'); ?>

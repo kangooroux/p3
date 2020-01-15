@@ -2,7 +2,7 @@
 
 <?php ob_start(); ?>
 <h1>Connexion</h1>
-<p>Votre inscription s'est faite avec succès</p>
+<p>Votre mot de passe a été réinitialisé avec succès</p>
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 	<fieldset>
 	<p>

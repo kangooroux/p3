@@ -3,8 +3,9 @@
 <?php ob_start(); ?>
 
 <h1>Demander la réinitialisation du mot de passe</h1>
+<p>Veuilliez répondre à la question</p>
 <form class="" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>l" method="post">
-    <label for="userNameMdpReset">Saisissez votre nom d'utilisateur:</label><input name="userNameMdpReset" type="text" id="userNameMdpReset" /><br />
+    <label for="questionMdpReset">Saisissez la réponse à la question:</label><input name="questionMdpReset" type="text" id="questionMdpReset" /><br />
     <p><input type="submit" value="Envoyer" /></p>
 </form>
 

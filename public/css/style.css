@@ -1,0 +1,32 @@
+body {
+  font-family: Arial;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+}
+
+.logo_gbaf {
+
+  height: 150px;
+  width: 150px;
+}
+
+.logo_gbaf > img {
+  height: 100%;
+  width: 100%;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+}
+
+h1 {
+  text-align: center;
+}
+
+.texte_lien_inscription {
+  text-align: center;
+}

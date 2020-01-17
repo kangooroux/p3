@@ -1,5 +1,7 @@
 <?php
 
+require_once('../model/InscriptionManager.php');
+
 // Va chercher la page de Connexion
 function connexion()
 {
@@ -16,16 +18,21 @@ function reinitMdp()
     require('../view/frontend/page_reinit_mdp.php');
 }
 
-function ajoutUtilisateur($nom, $prenom, $userName, $mdp, $questionS, $reponseS)
+function nouvelUtilisateur($nom, $prenom, $userName, $mdp, $questionS, $reponseS)
 {
-    $inscriptionManager = new \p3\Model\InscriptionManager();
-
-    $champs = $inscriptionManager->postComment($nom, $prenom, $userName, $mdp, $questionS, $reponseS);
-
-    if ($champs === false) {
-        throw new Exception('Impossible d\'ajouter le nouvel utilisateur !');
+    $utilisateurManager = new InscriptionManager();
+    $verif = $utilisateurManager->verifIdentifiant($userName);
+    if ($verif['user_name'] == $userName) {
+        $doublon = '';
+        require('../view/frontend/page_inscription.php');
     }
     else {
-        header('Location: index.php?page=inscriptionsucces');
+        $nouvelleEntree = $utilisateurManager->ajoutUtilisateur($nom, $prenom, $userName, $mdp, $questionS, $reponseS);
+        if ($nouvelleEntree === false) {
+            echo 'Impossible d\'ajouter le nouvel utilisateur !';
+        }
+        else {
+            echo "GG WP";
+        }
     }
 }

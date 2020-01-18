@@ -1,36 +1,34 @@
 * {
-    margin:0;
-    padding:0;
+  margin:0;
+  padding:0;
 }
 
-body, html {
-    height:100%;
+html, body {
+  height: 100%;
 }
-
 body {
-    font-family: Arial, Helvetica, sans-serif, normal ;
+  font-family: Arial, Helvetica, sans-serif, normal ;
 }
 
-main {
+.page_connexion header {
+  display: flex;
+  justify-content: center;
+}
+
+.page_connexion main {
   min-height: 80%;
   margin-bottom: -50px;
 }
 
-main:after {
+.page_connexion main:after {
   content: "";
   display: block;
   height: 50px;
 }
 
-header {
-    display: flex;
-    justify-content: center;
-}
-
 .logo_gbaf {
-
-    height: 150px;
-    width: 150px;
+    height: 200px;
+    width: 200px;
 }
 
 .logo_gbaf > img {
@@ -38,8 +36,9 @@ header {
     width: 100%;
 }
 
-h1 {
+.page_connexion h1 {
     text-align: center;
+    font-size: 1em;
 }
 
 .texte_lien_inscription {
@@ -49,19 +48,22 @@ h1 {
     margin-bottom: 10px;
 }
 
-label {
+.page_connexion label {
     display:block;
     margin-top:20px;
     letter-spacing:2px;
+    margin-left: 3px;
 }
 
-input {
-    width:98%;
+.page_connexion input {
+    width:92%;
     height:27px;
     background:#efefef;
     border:1px solid #e0e0e0;
     padding:10px;
-    margin-top:3px;
+    margin-top: 2px;
+    margin-left: 3px;
+    margin-bottom: 5px;
     font-size:0.9em;
     color:#666666;
     -moz-border-radius:5px;
@@ -69,11 +71,15 @@ input {
     border-radius:5px;
 }
 
-input:focus {
+.page_connexion fieldset {
+  margin-right: 1px;
+}
+
+.page_connexion input:focus {
     border:1px solid #333333;
 }
 
-.submit {
+.page_connexion .submit {
     color: #ffffff;
     background-color: #666666;
     width:127px;
@@ -84,11 +90,11 @@ input:focus {
     margin-bottom: 10px;
 }
 
-.submit:hover {
+.page_connexion .submit:hover {
   opacity: 0.9;
 }
 
-footer {
+.page_connexion footer {
     height: 50px;
     background-color: #333333;
     display: flex;
@@ -96,29 +102,40 @@ footer {
     width:100%;
 }
 
+.liens_footer > p {
+  margin-top: 15px;
+  font-size: 16px;
+}
+
 .liens_footer > p > a {
   text-decoration: none;
   color: #ffffff;
 }
 
-@media (max-width: 800px) {
-  fieldset {
-    margin-right: 1px;
-  }
-  input {
-    width: 97%;
-  }
-}
-
-@media (max-width: 599px) {
-  fieldset {
-    margin-right: 10px;
-  }
-  input {
-    width: 93%;
-  }
-}
-
 p.champ_alerte {
   color: red;
+}
+
+@media (min-width: 600px) {
+  .page_connexion input {
+      width:96%;
+  }
+}
+
+@media (min-width: 800px) {
+  .page_connexion input {
+      width:97%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .page_connexion input {
+      width:98%;
+  }
+}
+
+@media (min-width: 1600px) {
+  .page_connexion input {
+      width:98.5%;
+  }
 }

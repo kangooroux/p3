@@ -1,8 +1,7 @@
 <?php
 
-require_once('../model/InscriptionManager.php');
+require_once('../model/UtilisateurManager.php');
 
-// Va chercher la page de Connexion
 function connexion()
 {
     require('../view/frontend/page_connexion.php');
@@ -18,12 +17,16 @@ function reinitMdp()
     require('../view/frontend/page_reinit_mdp.php');
 }
 
-function nouvelUtilisateur($nom, $prenom, $userName, $mdp, $questionS, $reponseS)
+function nouvelUtilisateur($nom, $prenom, $userName, $mdp, $confirmMdp, $questionS, $reponseS)
 {
-    $utilisateurManager = new InscriptionManager();
+    $utilisateurManager = new UtilisateurManager();
     $verif = $utilisateurManager->verifIdentifiant($userName);
     if ($verif['user_name'] == $userName) {
         $doublon = '';
+        require('../view/frontend/page_inscription.php');
+    }
+    elseif ($mdp != $confirmMdp) {
+        $nonConcordance = '';
         require('../view/frontend/page_inscription.php');
     }
     else {
@@ -32,7 +35,7 @@ function nouvelUtilisateur($nom, $prenom, $userName, $mdp, $questionS, $reponseS
             echo 'Impossible d\'ajouter le nouvel utilisateur !';
         }
         else {
-            echo "GG WP";
+            echo "Utilisateur crée";
         }
     }
 }

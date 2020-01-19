@@ -1,8 +1,14 @@
 <?php
 
-require_once('../model/UtilisateurManager.php');
+session_start();
 
-function connexion()
+require_once('../model/UtilisateurManager.php');
+require_once('../public/src/IceCream/IceCream.php');
+require_once('../public/src/IceCream/functions.php');
+
+use function IceCream\ic;
+
+function page_defaut()
 {
     require('../view/frontend/page_connexion.php');
 }
@@ -17,16 +23,65 @@ function reinitMdp()
     require('../view/frontend/page_reinit_mdp.php');
 }
 
+function reinitMdpQuestion($userName)
+{
+    $utilisateurManager = new UtilisateurManager();
+    $verif = $utilisateurManager->oublieMdpVerif($userName);
+    if ($verif['user_name'] == $userName) {
+        $afficherquestion = '';
+        $_SESSION["userName"] = $userName;
+    }
+    else {
+        $afficherNExistePas = '';
+    }
+    require('../view/frontend/page_reinit_mdp.php');
+}
+
+function reinitMdpReponse($userName, $reponseMdpReset)
+{
+    $utilisateurManager = new UtilisateurManager();
+    $verif = $utilisateurManager->oublieMdpVerifReponse($userName);
+    $mdpConcordance = password_verify($reponseMdpReset, $verif['reponse']);
+    if ($mdpConcordance) {
+        $bonneReponse = '';
+    }
+    else {
+        $mauvaiseReponse = '';
+    }
+    require('../view/frontend/page_reinit_mdp.php');
+}
+
+function reinitMdpNouveauMdp($userName, $nouveauMdp, $confirmNouveauMdp)
+{
+    if ($nouveauMdp != $confirmNouveauMdp) {
+        $mdpNonConcordance = '';
+        require('../view/frontend/page_reinit_mdp.php');
+    }
+    else {
+        $utilisateurManager = new UtilisateurManager();
+        $reinitMdp = $utilisateurManager->modifMdp($userName, $nouveauMdp);
+        if ($reinitMdp) {
+          $nouveauMdpSucces = '';
+          require('../view/frontend/page_connexion.php');
+          $_SESSION = array();
+        }
+        else {
+            echo "Erreur";
+        }
+    }
+
+}
+
 function nouvelUtilisateur($nom, $prenom, $userName, $mdp, $confirmMdp, $questionS, $reponseS)
 {
     $utilisateurManager = new UtilisateurManager();
     $verif = $utilisateurManager->verifIdentifiant($userName);
     if ($verif['user_name'] == $userName) {
-        $doublon = '';
+        $afficherDoublon = '';
         require('../view/frontend/page_inscription.php');
     }
     elseif ($mdp != $confirmMdp) {
-        $nonConcordance = '';
+        $afficherNonConcordance = '';
         require('../view/frontend/page_inscription.php');
     }
     else {

@@ -2,45 +2,64 @@
 
 <?php ob_start(); ?>
 
-<?php
-
-if (isset($_POST['userNameMdpReset'])) {
-  echo '<h1>Demander la réinitialisation du mot de passe</h1>
-  <p>Veuilliez répondre à la question</p>
+<?php if (isset($afficherquestion)): ?>
+  <h1>Demander la réinitialisation du mot de passe</h1>
+  <p>Veuillez répondre à la question :</p>
+  <p><?php echo $verif['question'] ; ?></p>
   <form class="" action="?page=oublimdp" method="post">
-      <label for="questionMdpReset">Saisissez la réponse à la question:</label><input name="questionMdpReset" type="text" id="questionMdpReset" required/><br />
+      <label for="reponseMdpReset">Saisissez la réponse à la question:</label><input name="reponseMdpReset" type="text" id="reponseMdpReset" required/><br />
       <p><input type="submit" value="Envoyer" class="submit" /></p>
-  </form>';
-}
-elseif (isset($_POST['questionMdpReset'])) {
-  echo '<h1>Demander la réinitialisation du mot de passe</h1>
+  </form>
+<?php endif; ?>
+
+<?php if (isset($mauvaiseReponse)): ?>
+  <h1>Demander la réinitialisation du mot de passe</h1>
+  <p>Veuillez répondre à la question :</p>
+  <p><?php echo $verif['question'] ; ?></p>
+  <form class="" action="?page=oublimdp" method="post">
+      <label for="reponseMdpReset">Saisissez la réponse à la question:</label><input name="reponseMdpReset" type="textq" id="reponseMdpReset" required/><br />
+      <p class="champ_alerte">Cette réponse ne correspond pas à la quetion</p>
+      <p><input type="submit" value="Envoyer" class="submit" /></p>
+  </form>
+<?php endif; ?>
+
+<?php if (isset($afficherNExistePas)): ?>
+  <h1>Demander la réinitialisation du mot de passe</h1>
+  <form class="" action="?page=oublimdp" method="post">
+      <label for="userNameMdpReset">Saisissez votre nom d'utilisateur:</label><input name="userNameMdpReset" type="text" id="userNameMdpReset" required/><br />
+      <p class="champ_alerte">Cet identifiant n'existe pas</p>
+      <p><input type="submit" value="Envoyer" class="submit" /></p>
+  </form>
+<?php endif; ?>
+
+<?php if (isset($bonneReponse)): ?>
+  <h1>Demander la réinitialisation du mot de passe</h1>
   <p>Veuilliez fournir le nouveau mot de passe</p>
   <form class="" action="?page=oublimdp" method="post">
-      <label for="nouveauMdp">Saisissez le nouveau mot de passe:</label><input name="nouveauMdp" type="text" id="nouveauMdp" required/><br />
+      <label for="nouveauMdp">Saisissez le nouveau mot de passe :</label><input name="nouveauMdp" type="password" id="nouveauMdp" required/><br />
+      <label for="confirmNouveauMdp">Confirmer le nouveau mot de passe :</label><input name="confirmNouveauMdp" type="password" id="confirmNouveauMdp" required/><br />
       <p><input type="submit" value="Envoyer" class="submit" /></p>
-  </form>';
-}
-elseif (isset($_POST['nouveauMdp'])) {
-  echo '<h1>Connexion</h1>
-  <p>Votre mot de passe a été réinitialisé avec succès</p>
-  <form method="post" action="?page=oublimdp">
-  	<fieldset>
-  	<p>
-  	<label for="identifiant">Identifiant :</label><input name="identifiant" type="text" id="identifiant" required/><br />
-  	<label for="mdp">Mot de Passe :</label><input type="password" name="mdp" id="mdp" required/>
-  	</p>
-  	</fieldset>
-  	<p><input type="submit" value="Se connecter" class="submit" /></p>
-  </form>';
-}
-else {
-  echo '<h1>Demander la réinitialisation du mot de passe</h1>
-        <form class="" action="?page=oublimdp" method="post">
-            <label for="userNameMdpReset">Saisissez votre nom d\'utilisateur:</label><input name="userNameMdpReset" type="text" id="userNameMdpReset" required/><br />
-            <p><input type="submit" value="Envoyer" class="submit" /></p>
-        </form>';
-}
-?>
+  </form>
+<?php endif; ?>
+
+<?php if (isset($mdpNonConcordance)): ?>
+  <h1>Demander la réinitialisation du mot de passe</h1>
+  <p>Veuilliez fournir le nouveau mot de passe</p>
+  <form class="" action="?page=oublimdp" method="post">
+      <label for="nouveauMdp">Saisissez le nouveau mot de passe :</label><input name="nouveauMdp" type="password" id="nouveauMdp" required/><br />
+      <label for="confirmNouveauMdp">Confirmer le nouveau mot de passe :</label><input name="confirmNouveauMdp" type="password" id="confirmNouveauMdp" required/><br />
+      <p class="champ_alerte">Le mot de passe et la confirmation du mot de passe ne concorde pas</p>
+      <p><input type="submit" value="Envoyer" class="submit" /></p>
+  </form>
+<?php endif; ?>
+
+<?php if (empty($_POST)): ?>
+    <h1>Demander la réinitialisation du mot de passe</h1>
+    <form class="" action="?page=oublimdp" method="post">
+        <label for="userNameMdpReset">Saisissez votre nom d'utilisateur:</label><input name="userNameMdpReset" type="text" id="userNameMdpReset" required/><br />
+        <p><input type="submit" value="Envoyer" class="submit" /></p>
+    </form>
+<?php endif; ?>
 
 <?php $content = ob_get_clean(); ?>
 

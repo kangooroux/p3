@@ -2,20 +2,6 @@
 require('../controller/controller.php');
 
 try {
-    // if (($_SERVER["REQUEST_METHOD"] == "POST")) {
-    //   if (isset($_POST['identifiant']) && isset($_POST['mdp'])) {
-    //       // page connecté
-    //   }
-    //   elseif (isset($_POST['nom']) && ($_POST['prenom']) && ($_POST['userName']) && ($_POST['mdp']) && ($_POST['questionSecrete']) && ($_POST['reponseSecrete'])) {
-    //       ajoutUtilisateur($_POST['nom'], $_POST['prenom'], $_POST['userName'], $_POST['mdp'], $_POST['questionSecrete'], $_POST['reponseSecrete']);
-    //   }
-    //   elseif (isset($_POST['userNameMdpReset']) || isset($_POST['questionMdpReset']) || isset($_POST['nouveauMdp'])) {
-    //       reinitMdp();
-    //   }
-    //   else {
-    //       connexion();
-    //   }
-    // }
     if (isset($_GET['page'])) {
         if ($_GET['page'] == 'inscription') {
             if (isset($_POST['nom']) && ($_POST['prenom']) && ($_POST['userName']) && ($_POST['mdp']) && ($_POST['confirmMdp']) && ($_POST['questionSecrete']) && ($_POST['reponseSecrete'])) {
@@ -26,14 +12,30 @@ try {
             }
         }
         elseif ($_GET['page'] == 'oublimdp') {
-            reinitMdp();
+            if (isset($_POST['userNameMdpReset'])) {
+                reinitMdpQuestion(htmlspecialchars($_POST['userNameMdpReset']));
+            }
+            elseif (isset($_POST['reponseMdpReset'])) {
+                reinitMdpReponse($_SESSION["userName"],htmlspecialchars($_POST['reponseMdpReset']));
+            }
+            elseif ((isset($_POST['nouveauMdp'])) && (isset($_POST['confirmNouveauMdp']))) {
+                reinitMdpNouveauMdp($_SESSION["userName"], htmlspecialchars($_POST['nouveauMdp']), htmlspecialchars($_POST['confirmNouveauMdp']));
+            }
+            else {
+                reinitMdp();
+            }
+        }
+        elseif ($_GET['page'] == 'connexion') {
+            if ((isset($_POST['identifiant'])) && (isset($_POST['motDePasse']))) {
+                connexion(htmlspecialchars(), htmlspecialchars());
+            }
         }
         else {
-            echo "Cette page n'éxiste pas";
+            echo "string";
         }
     }
     else {
-        connexion();
+        page_defaut();
     }
 }
 catch(Exception $e) {

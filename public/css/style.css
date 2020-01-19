@@ -15,23 +15,23 @@ body {
   justify-content: center;
 }
 
-.page_connexion main {
+main {
   min-height: 80%;
   margin-bottom: -50px;
 }
 
-.page_connexion main:after {
+main:after {
   content: "";
   display: block;
   height: 50px;
 }
 
-.logo_gbaf {
+.page_connexion .logo_gbaf {
     height: 200px;
     width: 200px;
 }
 
-.logo_gbaf > img {
+.page_connexion .logo_gbaf > img {
     height: 100%;
     width: 100%;
 }
@@ -94,7 +94,7 @@ body {
   opacity: 0.9;
 }
 
-.page_connexion footer {
+footer {
     height: 50px;
     background-color: #333333;
     display: flex;

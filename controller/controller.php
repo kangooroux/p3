@@ -10,7 +10,12 @@ use function IceCream\ic;
 
 function page_defaut()
 {
-    require('../view/frontend/page_connexion.php');
+    if (isset($_SESSION['nom']) && isset($_SESSION['prenom'])) {
+        require('../view/frontend/page_liste_acteurs.php');
+    }
+    else {
+        require('../view/frontend/page_connexion.php');
+    }
 }
 
 function inscription()
@@ -90,7 +95,25 @@ function nouvelUtilisateur($nom, $prenom, $userName, $mdp, $confirmMdp, $questio
             echo 'Impossible d\'ajouter le nouvel utilisateur !';
         }
         else {
-            echo "Utilisateur crée";
+          // $_SESSION['nom'] = $verif['nom'];
+          // $_SESSION['prenom'] = $verif['prenom'];
+          require('../view/frontend/page_liste_acteurs.php');
         }
     }
+}
+
+function connexion($identifiant, $motDePasse)
+{
+    $utilisateurManager = new UtilisateurManager();
+    $verif = $utilisateurManager->verifMdp($identifiant);
+    if (password_verify($motDePasse, $verif['mdp'])) {
+        // $_SESSION['nom'] = $verif['nom'];
+        // $_SESSION['prenom'] = $verif['prenom'];
+        require('../view/frontend/page_liste_acteurs.php');
+    }
+    else {
+        $mauvaisIdentifiants = '';
+        require('../view/frontend/page_connexion.php');
+    }
+
 }

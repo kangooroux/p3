@@ -27,11 +27,11 @@ try {
         }
         elseif ($_GET['page'] == 'connexion') {
             if ((isset($_POST['identifiant'])) && (isset($_POST['motDePasse']))) {
-                connexion(htmlspecialchars(), htmlspecialchars());
+                connexion(htmlspecialchars($_POST['identifiant']), htmlspecialchars($_POST['motDePasse']));
             }
         }
         else {
-            echo "string";
+            page_defaut();
         }
     }
     else {

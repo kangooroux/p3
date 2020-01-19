@@ -17,6 +17,22 @@
     </section>
 <?php endif; ?>
 
+<?php if (isset($mauvaisIdentifiants)): ?>
+    <h1>Connexion</h1>
+    <section>
+        <p class="texte_lien_inscription">Vous n'avez pas de compte ? <a href="p3extranet.php/?page=inscription">S'inscrire</a></p>
+        <form method="post" action="?page=connexion">
+            <fieldset>
+                <label for="identifiant">Identifiant :</label><input name="identifiant" type="text" id="identifiant" required/><br />
+                <label for="motDePasse">Mot de Passe :</label><input type="password" name="motDePasse" id="motDePasse" required/>
+                <p class="champ_alerte">Identifiant ou mot de passe érroné</p>
+            </fieldset>
+            <p><input type="submit" value="Se connecter" class="submit" /></p>
+        </form>
+        <a href="p3extranet.php/?page=oublimdp" class="oublimdp">Mot de passe oublié ?</a>
+    </section>
+<?php endif; ?>
+
 <?php if (isset($nouveauMdpSucces)): ?>
     <h1>Connexion</h1>
     <p>Votre mot de passe a été réinitialisé avec succès</p>

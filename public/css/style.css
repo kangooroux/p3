@@ -134,7 +134,7 @@ p.champ_alerte {
   }
 }
 
-@media (min-width: 800px) {
+@media (min-width: 900px) {
   .page_connexion input {
     width:97%;
   }

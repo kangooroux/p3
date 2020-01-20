@@ -26,4 +26,4 @@
 
 <?php $content = ob_get_clean(); ?>
 
-<?php require('login_template.php'); ?>
+<?php require('view/frontend/login_template.php'); ?>

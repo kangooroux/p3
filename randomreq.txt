@@ -1,1 +1,0 @@
-INSERT INTO `utilisateurs`(`id`, `nom`, `prenom`, `user_name`, `mdp`, `question`, `reponse`) VALUES ('Alexandre','Bousquet','Kangoo',[value-4],[value-5],[value-6],[value-7])

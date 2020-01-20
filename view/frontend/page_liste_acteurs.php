@@ -4,4 +4,4 @@
 <h1>Texte présentation du GBAF et du site</h1>
 <?php $content = ob_get_clean(); ?>
 
-<?php require('connecte_template.php'); ?>
+<?php require('view/frontend/connecte_template.php'); ?>

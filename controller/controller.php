@@ -2,30 +2,30 @@
 
 session_start();
 
-require_once('../model/UtilisateurManager.php');
-require_once('../public/src/IceCream/IceCream.php');
-require_once('../public/src/IceCream/functions.php');
+require_once('model/UtilisateurManager.php');
+require_once('public/src/IceCream/IceCream.php');
+require_once('public/src/IceCream/functions.php');
 
 use function IceCream\ic;
 
 function page_defaut()
 {
     if (isset($_SESSION['nom']) && isset($_SESSION['prenom'])) {
-        require('../view/frontend/page_liste_acteurs.php');
+        require('view/frontend/page_liste_acteurs.php');
     }
     else {
-        require('../view/frontend/page_connexion.php');
+        require('view/frontend/page_connexion.php');
     }
 }
 
 function inscription()
 {
-    require('../view/frontend/page_inscription.php');
+    require('view/frontend/page_inscription.php');
 }
 
 function reinitMdp()
 {
-    require('../view/frontend/page_reinit_mdp.php');
+    require('view/frontend/page_reinit_mdp.php');
 }
 
 function reinitMdpQuestion($userName)
@@ -39,7 +39,7 @@ function reinitMdpQuestion($userName)
     else {
         $afficherNExistePas = '';
     }
-    require('../view/frontend/page_reinit_mdp.php');
+    require('view/frontend/page_reinit_mdp.php');
 }
 
 function reinitMdpReponse($userName, $reponseMdpReset)
@@ -53,22 +53,22 @@ function reinitMdpReponse($userName, $reponseMdpReset)
     else {
         $mauvaiseReponse = '';
     }
-    require('../view/frontend/page_reinit_mdp.php');
+    require('view/frontend/page_reinit_mdp.php');
 }
 
 function reinitMdpNouveauMdp($userName, $nouveauMdp, $confirmNouveauMdp)
 {
     if ($nouveauMdp != $confirmNouveauMdp) {
         $mdpNonConcordance = '';
-        require('../view/frontend/page_reinit_mdp.php');
+        require('view/frontend/page_reinit_mdp.php');
     }
     else {
         $utilisateurManager = new UtilisateurManager();
         $reinitMdp = $utilisateurManager->modifMdp($userName, $nouveauMdp);
         if ($reinitMdp) {
-          $nouveauMdpSucces = '';
-          require('../view/frontend/page_connexion.php');
-          $_SESSION = array();
+            $nouveauMdpSucces = '';
+            require('view/frontend/page_connexion.php');
+            $_SESSION = array();
         }
         else {
             echo "Erreur";
@@ -83,11 +83,11 @@ function nouvelUtilisateur($nom, $prenom, $userName, $mdp, $confirmMdp, $questio
     $verif = $utilisateurManager->verifIdentifiant($userName);
     if ($verif['user_name'] == $userName) {
         $afficherDoublon = '';
-        require('../view/frontend/page_inscription.php');
+        require('view/frontend/page_inscription.php');
     }
     elseif ($mdp != $confirmMdp) {
         $afficherNonConcordance = '';
-        require('../view/frontend/page_inscription.php');
+        require('view/frontend/page_inscription.php');
     }
     else {
         $nouvelleEntree = $utilisateurManager->ajoutUtilisateur($nom, $prenom, $userName, $mdp, $questionS, $reponseS);
@@ -95,9 +95,9 @@ function nouvelUtilisateur($nom, $prenom, $userName, $mdp, $confirmMdp, $questio
             echo 'Impossible d\'ajouter le nouvel utilisateur !';
         }
         else {
-          // $_SESSION['nom'] = $verif['nom'];
-          // $_SESSION['prenom'] = $verif['prenom'];
-          require('../view/frontend/page_liste_acteurs.php');
+            // $_SESSION['nom'] = $verif['nom'];
+            // $_SESSION['prenom'] = $verif['prenom'];
+            require('view/frontend/page_liste_acteurs.php');
         }
     }
 }
@@ -109,11 +109,10 @@ function connexion($identifiant, $motDePasse)
     if (password_verify($motDePasse, $verif['mdp'])) {
         // $_SESSION['nom'] = $verif['nom'];
         // $_SESSION['prenom'] = $verif['prenom'];
-        require('../view/frontend/page_liste_acteurs.php');
+        require('view/frontend/page_liste_acteurs.php');
     }
     else {
         $mauvaisIdentifiants = '';
-        require('../view/frontend/page_connexion.php');
+        require('view/frontend/page_connexion.php');
     }
-
 }

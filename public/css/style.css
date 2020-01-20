@@ -6,6 +6,7 @@
 html, body {
   height: 100%;
 }
+
 body {
   font-family: Arial, Helvetica, sans-serif, normal ;
 }
@@ -26,49 +27,56 @@ main:after {
   height: 50px;
 }
 
+.reinitMdpInstructions {
+  font-size: 1.5em;
+  margin-top: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
 .page_connexion .logo_gbaf {
-    height: 200px;
-    width: 200px;
+  height: 200px;
+  width: 200px;
 }
 
 .page_connexion .logo_gbaf > img {
-    height: 100%;
-    width: 100%;
+  height: 100%;
+  width: 100%;
 }
 
 .page_connexion h1 {
-    text-align: center;
-    font-size: 1em;
+  text-align: center;
+  font-size: 2em;
 }
 
 .texte_lien_inscription {
-    display: block;
-    text-align: center;
-    margin-top: 5px;
-    margin-bottom: 10px;
+  display: block;
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 10px;
 }
 
 .page_connexion label {
-    display:block;
-    margin-top:20px;
-    letter-spacing:2px;
-    margin-left: 3px;
+  display:block;
+  margin-top:20px;
+  letter-spacing:2px;
+  margin-left: 3px;
 }
 
 .page_connexion input {
-    width:92%;
-    height:27px;
-    background:#efefef;
-    border:1px solid #e0e0e0;
-    padding:10px;
-    margin-top: 2px;
-    margin-left: 3px;
-    margin-bottom: 5px;
-    font-size:0.9em;
-    color:#666666;
-    -moz-border-radius:5px;
-    -webkit-border-radius:5px;
-    border-radius:5px;
+  width:92%;
+  height:27px;
+  background:#efefef;
+  border:1px solid #e0e0e0;
+  padding:10px;
+  margin-top: 2px;
+  margin-left: 3px;
+  margin-bottom: 5px;
+  font-size:0.9em;
+  color:#666666;
+  -moz-border-radius:5px;
+  -webkit-border-radius:5px;
+  border-radius:5px;
 }
 
 .page_connexion fieldset {
@@ -76,18 +84,18 @@ main:after {
 }
 
 .page_connexion input:focus {
-    border:1px solid #333333;
+  border:1px solid #333333;
 }
 
 .page_connexion .submit {
-    color: #ffffff;
-    background-color: #666666;
-    width:127px;
-    height:38px;
-    border:none;
-    margin-top:15px;
-    cursor:pointer;
-    margin-bottom: 10px;
+  color: #ffffff;
+  background-color: #666666;
+  width:127px;
+  height:38px;
+  border:none;
+  margin-top:15px;
+  cursor:pointer;
+  margin-bottom: 10px;
 }
 
 .page_connexion .submit:hover {
@@ -95,11 +103,11 @@ main:after {
 }
 
 footer {
-    height: 50px;
-    background-color: #333333;
-    display: flex;
-    justify-content: center;
-    width:100%;
+  height: 50px;
+  background-color: #333333;
+  display: flex;
+  justify-content: center;
+  width:100%;
 }
 
 .liens_footer > p {
@@ -118,24 +126,28 @@ p.champ_alerte {
 
 @media (min-width: 600px) {
   .page_connexion input {
-      width:96%;
+    width:96%;
+  }
+  .reinitMdpInstructions {
+    font-size: 1.5em;
+    text-align: center;
   }
 }
 
 @media (min-width: 800px) {
   .page_connexion input {
-      width:97%;
+    width:97%;
   }
 }
 
 @media (min-width: 1200px) {
   .page_connexion input {
-      width:98%;
+    width:98%;
   }
 }
 
 @media (min-width: 1600px) {
   .page_connexion input {
-      width:98.5%;
+    width:98.5%;
   }
 }

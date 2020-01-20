@@ -31,7 +31,7 @@ try {
             }
         }
         else {
-            page_defaut();
+            echo "Cette page n'existe pas";
         }
     }
     else {

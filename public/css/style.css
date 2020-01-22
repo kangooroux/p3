@@ -91,7 +91,7 @@ main:after {
   color: #ffffff;
   background-color: #666666;
   width:127px;
-  height:38px;
+  height:42px;
   border:none;
   margin-top:15px;
   cursor:pointer;
@@ -118,34 +118,168 @@ footer {
 .liens_footer > p > a {
   text-decoration: none;
   color: #ffffff;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 p.champ_alerte {
   color: red;
 }
 
+.page_connecte > header > .logo_gbaf {
+  height: 200px;
+  width: 200px;
+  margin: auto;
+}
+
+.page_connecte > header > div {
+  text-align: center;
+}
+
+.page_connecte .logo_gbaf img {
+  height: 100%;
+  width: 100%;
+}
+
+.conteneur_utilisateur > p {
+  font-size: 32px;
+  font-weight: bold;
+  color: #222222;
+}
+
+.conteneur_utilisateur nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.conteneur_utilisateur a {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  min-height: 42px;
+  width: 160px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+	padding: 6px 0 6px 0;
+	border-radius: 8px;
+	background: #d63520;
+	font: bold 16px Arial;
+	color: #ffffff;
+  text-decoration: none;
+}
+
+.conteneur_utilisateur a > p {
+  font-size: 16px;
+}
+
+.page_connecte header {
+  margin-bottom: 20px;
+}
+
+.page_connecte h1 {
+  margin-left: 20px;
+  margin-bottom: 10px;
+}
+
+section p {
+  text-align: left;
+  margin-left: 40px;
+  margin-right: 30px;
+  margin-top: 5px;
+}
+
+.liste_banque {
+  list-style-type: square;
+  margin-left: 80px;
+  margin-top: 10px;
+}
+
+.conteneur_img_avis {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+}
+
+.conteneur_img_avis img {
+
+  max-width: 300px;
+}
+
+/* Tablettes Portrait */
 @media (min-width: 600px) {
   .page_connexion input {
     width:96%;
   }
+
+  .page_connecte > header > .logo_gbaf {
+    height: 200px;
+    width: 200px;
+    margin: 0;
+    margin-left: 40px;
+  }
+
+  .page_connecte header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .conteneur_utilisateur {
+    margin-top: 40px;
+  }
+
+  .conteneur_utilisateur nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-right: 40px;
+  }
+
+  .conteneur_nav {
+    margin-right: 20px;
+  }
+
+  .conteneur_utilisateur > p {
+    margin-right: 40px;
+  }
+
   .reinitMdpInstructions {
     font-size: 1.5em;
     text-align: center;
   }
+
+  .conteneur_utilisateur a {
+    width: auto;
+  }
+
+  .conteneur_utilisateur a > p {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
 }
 
+/* Tablettes landscape et petits écrans de bureau */
 @media (min-width: 900px) {
   .page_connexion input {
     width:97%;
   }
+
+  .page_connecte h1, h2 {
+    margin-left: 40px;
+  }
+
 }
 
+/* moyens écrans de bureau */
 @media (min-width: 1200px) {
   .page_connexion input {
     width:98%;
   }
 }
 
+/* grands écrans de bureau*/
 @media (min-width: 1600px) {
   .page_connexion input {
     width:98.5%;

@@ -3,10 +3,12 @@
 session_start();
 
 require_once('model/UtilisateurManager.php');
+
+// A retirer avant de rendre le projet
 require_once('public/src/IceCream/IceCream.php');
 require_once('public/src/IceCream/functions.php');
-
 use function IceCream\ic;
+// A retirer avant de rendre le projet
 
 function page_defaut()
 {
@@ -32,9 +34,13 @@ function reinitMdpQuestion($userName)
 {
     $utilisateurManager = new UtilisateurManager();
     $verif = $utilisateurManager->oublieMdpVerif($userName);
-    if ($verif['user_name'] == $userName) {
-        $afficherquestion = '';
-        $_SESSION["userName"] = $userName;
+    if ($verif) {
+        if ($verif['user_name'] == $userName) {
+            $afficherquestion = '';
+            $_SESSION["userName"] = $userName;
+        } else {
+            echo 'Impossible d\'obtenir la vérification';
+        }
     }
     else {
         $afficherNExistePas = '';
@@ -46,14 +52,21 @@ function reinitMdpReponse($userName, $reponseMdpReset)
 {
     $utilisateurManager = new UtilisateurManager();
     $verif = $utilisateurManager->oublieMdpVerifReponse($userName);
-    $mdpConcordance = password_verify($reponseMdpReset, $verif['reponse']);
-    if ($mdpConcordance) {
-        $bonneReponse = '';
+    if ($verif) {
+        $mdpConcordance = password_verify($reponseMdpReset, $verif['reponse']);
+        if ($mdpConcordance) {
+            $bonneReponse = '';
+            require('view/frontend/page_reinit_mdp.php');
+        }
+        else {
+            $mauvaiseReponse = '';
+            require('view/frontend/page_reinit_mdp.php');
+        }
     }
     else {
-        $mauvaiseReponse = '';
+        echo 'Impossible d\'obtenir la vérification';
     }
-    require('view/frontend/page_reinit_mdp.php');
+
 }
 
 function reinitMdpNouveauMdp($userName, $nouveauMdp, $confirmNouveauMdp)
@@ -81,9 +94,14 @@ function nouvelUtilisateur($nom, $prenom, $userName, $mdp, $confirmMdp, $questio
 {
     $utilisateurManager = new UtilisateurManager();
     $verif = $utilisateurManager->verifIdentifiant($userName);
-    if ($verif['user_name'] == $userName) {
-        $afficherDoublon = '';
-        require('view/frontend/page_inscription.php');
+    if ($verif) {
+        if ($verif['user_name'] == $userName) {
+            $afficherDoublon = '';
+            require('view/frontend/page_inscription.php');
+        }
+        else {
+            echo 'Impossible d\'obtenir la vérification';
+        }
     }
     elseif ($mdp != $confirmMdp) {
         $afficherNonConcordance = '';
@@ -91,13 +109,14 @@ function nouvelUtilisateur($nom, $prenom, $userName, $mdp, $confirmMdp, $questio
     }
     else {
         $nouvelleEntree = $utilisateurManager->ajoutUtilisateur($nom, $prenom, $userName, $mdp, $questionS, $reponseS);
-        if ($nouvelleEntree === false) {
-            echo 'Impossible d\'ajouter le nouvel utilisateur !';
-        }
-        else {
+        if ($nouvelleEntree) {
             // $_SESSION['nom'] = $verif['nom'];
             // $_SESSION['prenom'] = $verif['prenom'];
             require('view/frontend/page_liste_acteurs.php');
+
+        }
+        else {
+            echo 'Impossible d\'ajouter le nouvel utilisateur !';
         }
     }
 }
@@ -106,13 +125,20 @@ function connexion($identifiant, $motDePasse)
 {
     $utilisateurManager = new UtilisateurManager();
     $verif = $utilisateurManager->verifMdp($identifiant);
-    if (password_verify($motDePasse, $verif['mdp'])) {
-        // $_SESSION['nom'] = $verif['nom'];
-        // $_SESSION['prenom'] = $verif['prenom'];
-        require('view/frontend/page_liste_acteurs.php');
+    if ($verif) {
+        if (password_verify($motDePasse, $verif['mdp'])) {
+            // $_SESSION['nom'] = $verif['nom'];
+            // $_SESSION['prenom'] = $verif['prenom'];
+            require('view/frontend/page_liste_acteurs.php');
+        }
+        else {
+            $mauvaisIdentifiants = '';
+            require('view/frontend/page_connexion.php');
+        }
     }
     else {
-        $mauvaisIdentifiants = '';
-        require('view/frontend/page_connexion.php');
+      $mauvaisIdentifiants = '';
+      require('view/frontend/page_connexion.php');
     }
+
 }

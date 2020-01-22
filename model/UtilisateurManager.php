@@ -4,6 +4,7 @@ require_once("Manager.php");
 
 class UtilisateurManager extends Manager
 {
+
     // Pour vérifier si le nom d'identifiant est dêjà utilisé
     public function verifIdentifiant($userName)
     {

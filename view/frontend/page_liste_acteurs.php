@@ -1,10 +1,6 @@
-<!-- A supprimer avant de rendre le projet -->
-<?php  ?>
-
 <?php $title = 'P3:Extranet'; ?>
 
 <?php ob_start(); ?>
-
 <section>
     <h1>Bienvenue</h1>
     <p>Le <em>Groupement Banque Assurance Français</em> (GBAF) est une fédération
@@ -25,16 +21,10 @@
 </section>
 
 <section>
-    <h2>Liste des acteurs et partenaires</h2>
+    <h2 class="page_acteurs_h2">Liste des acteurs/partenaires</h2>
     <p>Vous est présenté ci-dessous les différents acteurs/partenaires, vous pouvez commenter et/ou liker un acteur/partenaire en cliquant sur "lire la suite" et en vous rendant sur leur page dédié.</p>
 </section>
-
-<div class="conteneur_acteurs">
-    <?php
-    // Sortir tous les acteurs de la base de données
-    ?>
-</div>
-
+<?php echo $listePartenaires; ?>
 <?php $content = ob_get_clean(); ?>
 
 <?php require('view/frontend/connecte_template.php'); ?>

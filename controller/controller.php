@@ -3,6 +3,7 @@
 session_start();
 
 require_once('model/UtilisateurManager.php');
+require_once('model/ActeurManager.php');
 
 // A retirer avant de rendre le projet
 require_once('public/src/IceCream/IceCream.php');
@@ -141,4 +142,13 @@ function connexion($identifiant, $motDePasse)
       require('view/frontend/page_connexion.php');
     }
 
+}
+
+function pageActeurs()
+{
+    $acteurManager = new ActeurManager();
+    ob_start();
+    $acteurManager->listeActeurs();
+    $listePartenaires = ob_get_clean();
+    require('view/frontend/page_liste_acteurs.php');
 }

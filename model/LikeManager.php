@@ -2,10 +2,10 @@
 
 require_once("Manager.php");
 
-class ActeurManager extends Manager
+class LikeManager extends Manager
 {
 
-    public function listeActeurs()
+    public function compterLikes()
     {
         $db = $this->dbConnect();
         $donnees = $db->query('SELECT id, chemin_logo_acteur, nom_acteur, premiere_ligne, acteur_lien FROM acteurs');

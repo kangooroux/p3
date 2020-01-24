@@ -1,10 +1,2 @@
 <?php
-require_once('controller/controller.php');
-
-try {
-    pageActeurs();
-}
-catch(Exception $e) {
-    $errorMessage = $e->getMessage();
-    require('view/errorView.php');
-}
+INSERT INTO `commentaires`(`prenom`, `commentaire`, `date_pub`, `acteur_id`) VALUES ('Jean','Test',NOW(),'1')

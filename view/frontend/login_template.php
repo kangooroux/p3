@@ -17,7 +17,7 @@
 
         <footer>
             <div class="liens_footer">
-                <p>| <a href="#">Mentions légales</a> | <a href="#">Contact</a> |
+                <p>| <a href="?page=mentionslegales">Mentions légales</a> | <a href="?page=contact">Contact</a> |
                 </p>
             </div>
         </footer>

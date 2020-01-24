@@ -187,7 +187,7 @@ p.champ_alerte {
   text-align: center;
 }
 
-section p {
+.page_connecte section p {
   text-align: left;
   margin-left: 40px;
   margin-right: 30px;
@@ -213,7 +213,7 @@ section p {
 
 .conteneur_acteur {
   border: black 1px solid;
-  height: 260px;
+  height: 320px;
   margin-top: 10px;
   margin-bottom: 10px;
   margin-left: 15px;
@@ -221,6 +221,7 @@ section p {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 }
 
 .conteneur_logo_acteur {
@@ -232,10 +233,6 @@ section p {
 .conteneur_logo_acteur img {
   width: 100%;
   height: 100%;
-}
-
-.conteneur_acteur {
-  position: relative;
 }
 
 .conteneur_acteur h3 {
@@ -263,6 +260,40 @@ section p {
   position: absolute;
   right: 10px;
   bottom: 10px;
+}
+
+.mentions_legales, .contact {
+  text-align: center;
+}
+
+.mentions_legales p, .contact p {
+  margin: 20px;
+}
+
+.page_acteur ul {
+  margin-left: 100px;
+}
+
+.page_acteur_logo {
+  margin-left: auto;
+  margin-right: auto;
+  width: 300px;
+  height: 100px;
+  margin-top: 5px;
+}
+
+.page_acteur_logo img {
+  width: 300px;
+  height: 100px;
+}
+
+.page_acteur h2 {
+  margin-left: 40px;
+  margin-bottom: 10px;
+}
+
+.page_acteur a {
+  margin-left: 40px;
 }
 
 /* Tablettes Portrait */
@@ -318,6 +349,40 @@ section p {
 
   .page_acteurs_h2 {
     text-align: left;
+  }
+
+  .conteneur_acteur {
+    flex-direction: row;
+    align-items: flex-start;
+    height: 160px;
+  }
+
+  .conteneur_logo_acteur {
+    max-width: 250px;
+    max-height: 100px;
+    margin-top: 15px;
+    margin-left: 30px;
+  }
+
+  .conteneur_logo_acteur img {
+    width: 250px;
+    height: 100px;
+  }
+
+  .conteneur_acteur h3 {
+    margin: 0;
+    margin-top: 15px;
+    margin-left: 15px;
+  }
+
+  .conteneur_acteur p {
+    margin: 0;
+    margin-top: 15px;
+    margin-left: 15px;
+  }
+
+  .page_acteurs_h2 {
+    margin-left: 25px;
   }
 }
 

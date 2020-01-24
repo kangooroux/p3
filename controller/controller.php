@@ -4,6 +4,8 @@ session_start();
 
 require_once('model/UtilisateurManager.php');
 require_once('model/ActeurManager.php');
+require_once('model/CommentaireManager.php');
+require_once('model/LikeManager.php');
 
 // A retirer avant de rendre le projet
 require_once('public/src/IceCream/IceCream.php');
@@ -11,14 +13,9 @@ require_once('public/src/IceCream/functions.php');
 use function IceCream\ic;
 // A retirer avant de rendre le projet
 
-function page_defaut()
+function defaut()
 {
-    if (isset($_SESSION['nom']) && isset($_SESSION['prenom'])) {
-        require('view/frontend/page_liste_acteurs.php');
-    }
-    else {
-        require('view/frontend/page_connexion.php');
-    }
+    require('view/frontend/page_connexion.php');
 }
 
 function inscription()
@@ -29,6 +26,22 @@ function inscription()
 function reinitMdp()
 {
     require('view/frontend/page_reinit_mdp.php');
+}
+
+function mentionslegales()
+{
+    require('view/frontend/mentions_legales.php');
+}
+
+function contact()
+{
+    require('view/frontend/contact.php');
+}
+
+function deconnexion()
+{
+    $_SESSION = array();
+    require('view/frontend/page_connexion.php');
 }
 
 function reinitMdpQuestion($userName)
@@ -128,9 +141,9 @@ function connexion($identifiant, $motDePasse)
     $verif = $utilisateurManager->verifMdp($identifiant);
     if ($verif) {
         if (password_verify($motDePasse, $verif['mdp'])) {
-            // $_SESSION['nom'] = $verif['nom'];
-            // $_SESSION['prenom'] = $verif['prenom'];
-            require('view/frontend/page_liste_acteurs.php');
+            $_SESSION['nom'] = $verif['nom'];
+            $_SESSION['prenom'] = $verif['prenom'];
+            $_SESSION['user_name'] = $verif['user_name'];
         }
         else {
             $mauvaisIdentifiants = '';
@@ -151,4 +164,23 @@ function pageActeurs()
     $acteurManager->listeActeurs();
     $listePartenaires = ob_get_clean();
     require('view/frontend/page_liste_acteurs.php');
+}
+
+function acteur($acteurId)
+{
+    $acteurManager = new ActeurManager();
+    $acteurAffiche = $acteurManager->choisirActeur($acteurId);
+    if ($acteurAffiche) {
+        $compteurutilisateurManager = new CommentaireManager();
+        $compteur = $compteurutilisateurManager->compterCommentaires($acteurId);
+        $commentaireManager = new CommentaireManager();
+        ob_start();
+        $commentaireManager->listeCommentaires($acteurId);
+        $listeCommentaires = ob_get_clean();
+        require('view/frontend/page_acteur.php');
+    }
+    else {
+        echo "Aucun acteur lié à cet ID";
+    }
+    $commentaireManager = new CommentaireManager();
 }

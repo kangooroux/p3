@@ -1,13 +1,3 @@
-<!-- A enlever plus tard -->
-<?php
-
-$_SESSION['nom'] = 'Dupont';
-$_SESSION['prenom'] = 'Jean';
-
-?>
-
-
-
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
     <head>
@@ -19,12 +9,11 @@ $_SESSION['prenom'] = 'Jean';
 
         <header>
             <div class="logo_gbaf"><a href="http://localhost/p3/"><img src="/p3/public/images/15631755744257_LOGO_GBAF_ROUGE.png" alt=""></a></div>
-            <!-- Faire: Bouton de déconnexion à droit en dessous du nom et prénom -->
             <div class="conteneur_utilisateur">
                 <p><?php echo strtoupper($_SESSION['nom']) . " " . $_SESSION['prenom']?></p>
                 <nav>
                     <div class="conteneur_nav"><a href="#"><p>Paramètres du compte</p></a></div>
-                    <div class="conteneur_nav"><a href="#"><p>Déconnexion</p></a></div>
+                    <div class="conteneur_nav"><a href="?page=deconnexion"><p>Déconnexion</p></a></div>
                 </nav>
             </div>
         </header>
@@ -35,13 +24,10 @@ $_SESSION['prenom'] = 'Jean';
 
         <footer>
             <div class="liens_footer">
-                <p>| <a href="#">Mentions légales</a> | <a href="#">Contact</a> |
+                <p>| <a href="?page=mentionslegales">Mentions légales</a> | <a href="?page=contact">Contact</a> |
                 </p>
             </div>
         </footer>
 
     </body>
 </html>
-
-<!-- A enlever plus tard -->
-<?php $_SESSION = array(); ?>

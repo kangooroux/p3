@@ -190,7 +190,7 @@ p.champ_alerte {
 .page_connecte section p {
   text-align: left;
   margin-left: 40px;
-  margin-right: 30px;
+  margin-right: 40px;
   margin-top: 5px;
 }
 
@@ -294,6 +294,12 @@ p.champ_alerte {
 
 .page_acteur a {
   margin-left: 40px;
+}
+
+.conteneur_commentaires {
+  margin-top: 20px;
+  margin-left: 40px;
+  margin-right: 40px;
 }
 
 /* Tablettes Portrait */

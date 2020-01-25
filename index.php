@@ -16,6 +16,9 @@ try {
             elseif (($_GET['page'] == 'acteur') && (isset($_GET['acteurid']))) {
                 acteur($_GET['acteurid']);
             }
+            elseif (($_GET['page'] == 'paramcompte') {
+
+            }
             else {
                 pageActeurs();
             }

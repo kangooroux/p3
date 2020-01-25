@@ -11,8 +11,9 @@
 <section class="conteneur_commentaires">
     <div class="">
         <h3><?php echo $compteur; ?> commentaires</h3>
-        <a href="#">Nouveau commentaire</a>
-        <a href="#"></a>
+        <a href="#" class="nouveau_commentaire">Nouveau commentaire</a>
+        <a href="#" class="boutton_like"> <img src="public/images/ThumbsUp_40975.png" alt="Bouton like"> </a>
+        <a href="#" class="boutton_dislike"> <img src="public/images/ThumbsDown_40974.png" alt="Bouton dislike"> </a>
     </div>
     <?php echo $listeCommentaires; ?>
 </section>

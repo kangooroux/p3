@@ -10,7 +10,7 @@
     <?php if (isset($nouveauMdpSucces)): ?>
     <p>Votre mot de passe a été réinitialisé avec succès</p>
     <?php endif; ?>
-    <form method="post" action="?page=connexion">
+    <form method="post" action="index.php">
         <fieldset>
                 <label for="identifiant">Identifiant :</label><input name="identifiant" type="text" id="identifiant" required/><br />
                 <label for="motDePasse">Mot de Passe :</label><input type="password" name="motDePasse" id="motDePasse" required/>

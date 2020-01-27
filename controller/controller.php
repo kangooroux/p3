@@ -124,9 +124,10 @@ function nouvelUtilisateur($nom, $prenom, $userName, $mdp, $confirmMdp, $questio
     else {
         $nouvelleEntree = $utilisateurManager->ajoutUtilisateur($nom, $prenom, $userName, $mdp, $questionS, $reponseS);
         if ($nouvelleEntree) {
-            // $_SESSION['nom'] = $verif['nom'];
-            // $_SESSION['prenom'] = $verif['prenom'];
-            require('view/frontend/page_liste_acteurs.php');
+            $_SESSION['nom'] = $nom;
+            $_SESSION['prenom'] = $prenom;
+            $_SESSION['user_name'] = $userName;
+            header('http://localhost/p3/index.php');
 
         }
         else {
@@ -166,13 +167,22 @@ function pageActeurs()
     require('view/frontend/page_liste_acteurs.php');
 }
 
-function acteur($acteurId)
+function acteur($acteurId, $userName)
 {
     $acteurManager = new ActeurManager();
     $acteurAffiche = $acteurManager->choisirActeur($acteurId);
     if ($acteurAffiche) {
         $compteurutilisateurManager = new CommentaireManager();
         $compteur = $compteurutilisateurManager->compterCommentaires($acteurId);
+        $compteurLikesManager = new LikeManager();
+        $likes = $compteurLikesManager->compterLikes($acteurId);
+        $compteurDislikesManager = new LikeManager();
+        $dislikes = $compteurDislikesManager->compterDislikes($acteurId);
+        $totalLikeDislike = $likes + $dislikes;
+        $commentVerif = new CommentaireManager();
+        $commentaireExiste = $commentVerif->commentaireExiste($acteurId, $userName);
+        $likeVerif = new LikeManager();
+        $likeExiste = $likeVerif->checkLike($acteurId, $userName);
         $commentaireManager = new CommentaireManager();
         ob_start();
         $commentaireManager->listeCommentaires($acteurId);
@@ -183,4 +193,22 @@ function acteur($acteurId)
         echo "Aucun acteur lié à cet ID";
     }
     $commentaireManager = new CommentaireManager();
+}
+
+function postCommentaire($commentaire)
+{
+    $commentaireManager = new CommentaireManager();
+    $commentaireManager->insererCommentaire($commentaire);
+}
+
+function postDislike($acteurId, $userName)
+{
+    $dislikeManager = new LikeManager();
+    $dislikeManager->ajouterDislike($acteurId, $userName);
+}
+
+function postLike($acteurId, $userName)
+{
+    $dislikeManager = new LikeManager();
+    $dislikeManager->ajouterLike($acteurId, $userName);
 }

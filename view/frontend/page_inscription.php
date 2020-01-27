@@ -4,7 +4,7 @@
 
 <h1>Inscription</h1>
     <section>
-        <form class="" action="?page=inscription" method="post">
+        <form class="" action="index.php" method="post">
             <fieldset>
                 <label for="nom">Nom :</label><input name="nom" type="text" id="nom" required/><br />
                 <label for="prenom">Prénom :</label><input name="prenom" type="text" id="prenom" required/><br />

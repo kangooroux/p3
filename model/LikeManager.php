@@ -4,28 +4,16 @@ require_once("Manager.php");
 
 class LikeManager extends Manager
 {
-    public function compterLikes($acteurId)
+    public function compterVote($acteurId)
     {
         $db = $this->dbConnect();
-        $donnees = $db->query('SELECT * FROM likes WHERE acteur_id ='. $acteurId . ' AND likes = 1');
+        $donnees = $db->query('SELECT * FROM likes WHERE acteur_id ='. $acteurId . '');
         $likesTotal = 0;
         while ($likes = $donnees->fetch()) {
-            $likesTotal++;
+            $likesTotal + $likes;
         }
         $donnees->closeCursor();
         return $likesTotal;
-    }
-
-    public function compterDislikes($acteurId)
-    {
-        $db = $this->dbConnect();
-        $donnees = $db->query('SELECT * FROM likes WHERE acteur_id ='. $acteurId . ' AND dislikes = 1');
-        $dislikesTotal = 0;
-        while ($dislikes = $donnees->fetch()) {
-            $dislikesTotal--;
-        }
-        $donnees->closeCursor();
-        return $dislikesTotal;
     }
 
     public function ajouterLike($acteurId, $userName)
@@ -42,11 +30,11 @@ class LikeManager extends Manager
         $vote->execute([1 , $userName, $acteurId]);
     }
 
-    public function checkLike($acteurId, $userName)
+    public function checkLike($acteurId, $userId)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT * FROM likes WHERE acteur_id =? AND user_name =?');
-        $req->execute([$acteurId, $userName]);
+        $req = $db->prepare('SELECT * FROM likes WHERE acteur_id =? AND user_id =?');
+        $req->execute([$acteurId, $userId]);
         $donnees = $req->fetch();
         return $donnees;
     }

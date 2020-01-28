@@ -12,7 +12,7 @@
             <div class="conteneur_utilisateur">
                 <p><?php echo strtoupper($_SESSION['nom']) . " " . $_SESSION['prenom']?></p>
                 <nav>
-                    <div class="conteneur_nav"><a href="#"><p>Paramètres du compte</p></a></div>
+                    <div class="conteneur_nav"><a href="?page=paramcompte"><p>Paramètres du compte</p></a></div>
                     <div class="conteneur_nav"><form method="post" action="index.php"><input type="submit" name="deconnexion" value="Déconnexion" /></form></div>
                 </nav>
             </div>

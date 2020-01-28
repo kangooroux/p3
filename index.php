@@ -5,7 +5,7 @@ try {
     if (isset($_POST['deconnexion'])) {
         deconnexion();
     }
-    elseif (isset($_SESSION['nom']) && isset($_SESSION['prenom'])) {
+    elseif (isset($_SESSION['nom']) && isset($_SESSION['prenom']) && isset($_SESSION['user_id'])) {
         if (isset($_GET['page'])) {
             if ($_GET['page'] == 'deconnexion') {
                 deconnexion();
@@ -16,26 +16,27 @@ try {
             elseif ($_GET['page'] == 'contact') {
                 contact();
             }
-            elseif (($_GET['page'] == 'acteur') && (isset($_GET['acteurid'])) && (isset($_POST['commentaire']))) {
-                postCommentaire(htmlspecialchars($_POST['commentaire']));
-                acteur($_GET['acteurid'], $_SESSION['user_name']);
-            }
-            elseif (($_GET['page'] == 'acteur') && (isset($_GET['acteurid'])) && (isset($_POST['like']))) {
-                postLike($_GET['acteurid'], $_SESSION['user_name']);
-                acteur($_GET['acteurid'], $_SESSION['user_name']);
-            }
-            elseif (($_GET['page'] == 'acteur') && (isset($_GET['acteurid'])) && (isset($_POST['dislike']))) {
-                postDislike($_GET['acteurid'], $_SESSION['user_name']);
-                acteur($_GET['acteurid'], $_SESSION['user_name']);
+            elseif ($_GET['page'] == 'parametrescompte') {
+                paramCompte($_SESSION['user_id']);
             }
             elseif (($_GET['page'] == 'acteur') && (isset($_GET['acteurid']))) {
-                acteur($_GET['acteurid'], $_SESSION['user_name']);
+                if (isset($_POST['commentaire'])) {
+                    postCommentaire($_GET['acteurid'], $_SESSION['user_id'], htmlspecialchars($_POST['commentaire']));
+                }
+                // Reprendre ici
+                elseif (isset($_POST['like'])) {
+                    postLike($_GET['acteurid'], $_SESSION['user_id']);
+                }
+                elseif (isset($_POST['dislike'])) {
+                    postDislike($_GET['acteurid'], $_SESSION['user_id']);
+                }
+                acteur($_GET['acteurid'], $_SESSION['user_id']);
             }
             elseif ($_GET['page'] == 'paramcompte') {
-                echo "string";
+                paramCompte($_SESSION['user_id']);
             }
             else {
-                pageActeurs();
+                echo "Cette page n'existe pas";
             }
         }
         else {

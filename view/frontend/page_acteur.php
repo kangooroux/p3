@@ -2,9 +2,8 @@
 
 <?php ob_start(); ?>
 
-
 <?php if (isset($_GET['nouveaucommentaire'])): ?>
-    <form class="bulle_commentaire" action="?page=acteur&acteurid=<?php echo $acteurAffiche['id']; ?>" method="post">
+    <form class="bulle_commentaire" action="?page=acteur&acteurid=<?php echo $acteurAffiche['acteur_id']; ?>" method="post">
         <label for="commentaire" class="commentaire_label">Laisser votre commentaire : </label>
         <textarea name="commentaire" class="commentaire_zone"></textarea>
         <input type="submit" name="envoyer_commentaire" value="Envoyer" class="commentaire_envoi">
@@ -17,10 +16,20 @@
     </div>
 <?php endif; ?>
 
+<?php if (isset($_POST['like'])): ?>
+    <div class="conteneur_like_confirm">
+        <img src="public/images/ThumbsUp_40975.png" alt="image pouce vers le haut" class="image_like_confirm"><p class="like_confirm">Vous avez liké</p>
+    </div>
+<?php elseif (isset($_POST['dislike'])): ?>
+    <div class="conteneur_like_confirm">
+        <img src="public/images/ThumbsDown_40974.png" alt="image pouce vers le bas" class="image_like_confirm"><p class="like_confirm">Vous avez disliké</p>
+    </div>
+<?php endif; ?>
+
 <section class="page_acteur">
     <div class="page_acteur_logo"> <img src="<?php echo $acteurAffiche['chemin_logo_acteur']; ?>" alt=""> </div>
     <h2><?php echo $acteurAffiche['nom_acteur']; ?></h2>
-    <a href="#"><?php echo $acteurAffiche['acteur_lien']; ?></a>
+    <a href="#" class='acteur_lien_ext'><?php echo $acteurAffiche['acteur_lien']; ?></a>
     <?php echo $acteurAffiche['contenu_textuel']; ?>
 </section>
 
@@ -28,29 +37,31 @@
     <div class="conteneur_infos-bouton_commentaires">
         <h3><?php echo $compteur; ?> commentaires</h3>
         <?php if (!$commentaireExiste): ?>
-            <a href="?page=acteur&acteurid=<?php echo $acteurAffiche['id']; ?>&nouveaucommentaire" class="nouveau_commentaire">Nouveau <br>commentaire</a>
+            <a href="?page=acteur&acteurid=<?php echo $acteurAffiche['acteur_id']; ?>&nouveaucommentaire" class="nouveau_commentaire">Nouveau <br>commentaire</a>
         <?php else: ?>
             <p class="deja_commente">Vous avez commenté cet acteur/partenaire.</p>
         <?php endif; ?>
-        <?php if ($likeExiste): ?>
-            <p class="deja_like">Vous avez liké/disliké cet acteur/partenaire.</p>
+        <?php if ($likeExiste['likes']): ?>
+            <p class="deja_like">Vous avez liké cet acteur/partenaire.</p>
+        <?php elseif ($likeExiste['dislikes']): ?>
+            <p class="deja_like">Vous avez disliké cet acteur/partenaire.</p>
         <?php endif; ?>
         <div class="compteur_likes">
-            <?php if ($totalLikeDislike >= 0): ?>
+            <?php if ($likes >= 0): ?>
                 <img src="public/images/uparrow_arriba_1538.png" alt="">
-                <span class="nombre_likes"><?php echo $totalLikeDislike; ?></span>
+                <span class="nombre_likes"><?php echo $likes; ?></span>
             <?php endif; ?>
-            <?php if ($totalLikeDislike < 0): ?>
+            <?php if ($likes < 0): ?>
                 <img src="public/images/arrowdown_flech_1539.png" alt="">
-                <span class="nombre_likes"><?php echo $totalLikeDislike; ?></span>
+                <span class="nombre_likes"><?php echo $likes; ?></span>
             <?php endif; ?>
         </div>
         <?php if (!$likeExiste): ?>
-            <form method="post" action="?page=acteur&acteurid=<?php echo $acteurAffiche['id']; ?>" class="boutton_like">
+            <form method="post" action="?page=acteur&acteurid=<?php echo $acteurAffiche['acteur_id']; ?>" class="boutton_like">
                 <input type="hidden" name="like" value="">
                 <input type="image" src="public/images/ThumbsUp_40975.png" name="like" value="like" />
             </form>
-            <form method="post" action="?page=acteur&acteurid=<?php echo $acteurAffiche['id']; ?>" class="boutton_dislike">
+            <form method="post" action="?page=acteur&acteurid=<?php echo $acteurAffiche['acteur_id']; ?>" class="boutton_dislike">
                 <input type="hidden" name="dislike" value="">
                 <input type="image" src="public/images/ThumbsDown_40974.png" name="dislike" value="dislike" />
             </form>

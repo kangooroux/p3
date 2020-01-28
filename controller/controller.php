@@ -124,11 +124,12 @@ function nouvelUtilisateur($nom, $prenom, $userName, $mdp, $confirmMdp, $questio
     else {
         $nouvelleEntree = $utilisateurManager->ajoutUtilisateur($nom, $prenom, $userName, $mdp, $questionS, $reponseS);
         if ($nouvelleEntree) {
+            $utilisateurIdManager = new UtilisateurManager();
+            $userId = $utilisateurIdManager->obetenirId($userName);
+            $_SESSION['user_id'] = $userId['user_id'];
             $_SESSION['nom'] = $nom;
             $_SESSION['prenom'] = $prenom;
-            $_SESSION['user_name'] = $userName;
             header('http://localhost/p3/index.php');
-
         }
         else {
             echo 'Impossible d\'ajouter le nouvel utilisateur !';
@@ -144,7 +145,7 @@ function connexion($identifiant, $motDePasse)
         if (password_verify($motDePasse, $verif['mdp'])) {
             $_SESSION['nom'] = $verif['nom'];
             $_SESSION['prenom'] = $verif['prenom'];
-            $_SESSION['user_name'] = $verif['user_name'];
+            $_SESSION['user_id'] = $verif['user_id'];
         }
         else {
             $mauvaisIdentifiants = '';
@@ -167,7 +168,7 @@ function pageActeurs()
     require('view/frontend/page_liste_acteurs.php');
 }
 
-function acteur($acteurId, $userName)
+function acteur($acteurId, $userId)
 {
     $acteurManager = new ActeurManager();
     $acteurAffiche = $acteurManager->choisirActeur($acteurId);
@@ -175,14 +176,11 @@ function acteur($acteurId, $userName)
         $compteurutilisateurManager = new CommentaireManager();
         $compteur = $compteurutilisateurManager->compterCommentaires($acteurId);
         $compteurLikesManager = new LikeManager();
-        $likes = $compteurLikesManager->compterLikes($acteurId);
-        $compteurDislikesManager = new LikeManager();
-        $dislikes = $compteurDislikesManager->compterDislikes($acteurId);
-        $totalLikeDislike = $likes + $dislikes;
+        $likes = $compteurLikesManager->compterVote($acteurId);
         $commentVerif = new CommentaireManager();
-        $commentaireExiste = $commentVerif->commentaireExiste($acteurId, $userName);
+        $commentaireExiste = $commentVerif->commentaireExiste($acteurId, $userId);
         $likeVerif = new LikeManager();
-        $likeExiste = $likeVerif->checkLike($acteurId, $userName);
+        $likeExiste = $likeVerif->checkLike($acteurId, $userId);
         $commentaireManager = new CommentaireManager();
         ob_start();
         $commentaireManager->listeCommentaires($acteurId);
@@ -195,20 +193,45 @@ function acteur($acteurId, $userName)
     $commentaireManager = new CommentaireManager();
 }
 
-function postCommentaire($commentaire)
+function postCommentaire($acteurId, $userId ,$commentaire)
 {
-    $commentaireManager = new CommentaireManager();
-    $commentaireManager->insererCommentaire($commentaire);
+    $commentVerif = new CommentaireManager();
+    $commentaireExiste = $commentVerif->commentaireExiste($acteurId, $userId);
+    if (!$commentaireExiste) {
+        $commentaireManager = new CommentaireManager();
+        $commentaireManager->insererCommentaire($commentaire);
+    }
 }
 
 function postDislike($acteurId, $userName)
 {
-    $dislikeManager = new LikeManager();
-    $dislikeManager->ajouterDislike($acteurId, $userName);
+    $likeVerif = new LikeManager();
+    $likeExiste = $likeVerif->checkLike($acteurId, $userName);
+    if ($likeExiste) {
+
+    }
+    else {
+      $dislikeManager = new LikeManager();
+      $dislikeManager->ajouterDislike($acteurId, $userName);
+    }
 }
 
 function postLike($acteurId, $userName)
 {
-    $dislikeManager = new LikeManager();
-    $dislikeManager->ajouterLike($acteurId, $userName);
+    $likeVerif = new LikeManager();
+    $likeExiste = $likeVerif->checkLike($acteurId, $userName);
+    if ($likeExiste) {
+
+    }
+    else {
+        $dislikeManager = new LikeManager();
+        $dislikeManager->ajouterLike($acteurId, $userName);
+    }
+}
+
+function paramCompte($userName)
+{
+    $utilisateurManager = new UtilisateurManager();
+    $infosCompte = $utilisateurManager->infosCompte($userName);
+    require('view/frontend/page_param_compte.php');
 }

@@ -26,6 +26,15 @@ class UtilisateurManager extends Manager
         return $nouvelleEntree;
     }
 
+    public function obetenirId($userName)
+    {
+        $db = $this->dbConnect();
+        $user = $db->prepare('SELECT user_id FROM utilisateurs WHERE user_name = :user_name');
+        $user->execute(array('user_name' => $userName));
+        $verif = $user->fetch();
+        return $verif;
+    }
+
     // Va chercher la question à afficher sur la page de réinitialisation du mot de passe
     public function oublieMdpVerif($userName)
     {
@@ -60,7 +69,16 @@ class UtilisateurManager extends Manager
     public function verifMdp($identifiant)
     {
         $db = $this->dbConnect();
-        $user = $db->prepare('SELECT nom, prenom, user_name, mdp FROM utilisateurs WHERE user_name = :user_name');
+        $user = $db->prepare('SELECT user_id, nom, prenom, mdp FROM utilisateurs WHERE user_name = :user_name');
+        $user->execute(array('user_name' => $identifiant));
+        $verif = $user->fetch();
+        return $verif;
+    }
+
+    public function infosCompte($identifiant)
+    {
+        $db = $this->dbConnect();
+        $user = $db->prepare('SELECT nom, prenom, user_name, question FROM utilisateurs WHERE user_name = :user_name');
         $user->execute(array('user_name' => $identifiant));
         $verif = $user->fetch();
         return $verif;

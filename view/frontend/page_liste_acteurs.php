@@ -1,4 +1,4 @@
-<?php $title = 'P3:Extranet'; ?>
+<?php $title = 'Accueil acteurs/partenaires'; ?>
 
 <?php ob_start(); ?>
 <section>

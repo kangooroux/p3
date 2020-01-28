@@ -75,11 +75,11 @@ class UtilisateurManager extends Manager
         return $verif;
     }
 
-    public function infosCompte($identifiant)
+    public function infosCompte($userId)
     {
         $db = $this->dbConnect();
-        $user = $db->prepare('SELECT nom, prenom, user_name, question FROM utilisateurs WHERE user_name = :user_name');
-        $user->execute(array('user_name' => $identifiant));
+        $user = $db->prepare('SELECT nom, prenom, user_name, question FROM utilisateurs WHERE user_id = :user_id');
+        $user->execute(array('user_id' => $userId));
         $verif = $user->fetch();
         return $verif;
     }

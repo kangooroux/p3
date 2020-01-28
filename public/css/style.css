@@ -342,7 +342,7 @@ p.champ_alerte {
   margin-left: 15%;
 }
 
-.conteneur_commentaires form {
+.conteneur_infos-bouton_commentaires .boutton_like, .conteneur_infos-bouton_commentaires .boutton_dislike {
   display: inline-block;
   margin: auto;
   width: 33%;
@@ -466,6 +466,62 @@ p.champ_alerte {
   color: #333333;
 }
 
+.form_identite {
+  margin-bottom: 50px;
+}
+
+.form_identite fieldset {
+  display: grid;
+  grid-template-columns: 1fr;
+  width: 90%;
+  margin: auto;
+	padding: 5px;
+	box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
+	border-radius: 10px;
+	border: 6px solid #666666;
+}
+
+.form_identite input {
+  box-sizing: border-box;
+	padding: 8px;
+	border: 1px solid #B0CFE0;
+	-webkit-transition: all 0.30s ease-in-out;
+	-moz-transition: all 0.30s ease-in-out;
+	-ms-transition: all 0.30s ease-in-out;
+	-o-transition: all 0.30s ease-in-out;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.form_identite input:focus{
+	box-shadow: 0 0 5px #B0CFE0;
+	border:1px solid #B0CFE0;
+}
+
+.form_identite input[type="submit"] {
+	box-shadow: inset 0px 1px 0px 0px #3985B1;
+	background-color: #666666;
+	border: 1px solid #999999;
+	display: inline-block;
+	cursor: pointer;
+	color: white;
+	padding: 8px 18px;
+	text-decoration: none;
+	font: 12px Arial, Helvetica, sans-serif;
+}
+
+.param_compte h1 {
+  margin: 0;
+  text-align: center;
+  font-size: 24px;
+}
+
+.param_compte p {
+  text-align: center;
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+
 /* Tablettes Portrait */
 @media (min-width: 600px) {
   .page_connexion input {
@@ -583,7 +639,7 @@ p.champ_alerte {
     text-align: center;
   }
 
-  .conteneur_commentaires form {
+  .conteneur_infos-bouton_commentaires .boutton_like, .conteneur_infos-bouton_commentaires .boutton_dislike {
     display: inline-block;
     margin: 0;
     top: 5px;
@@ -645,6 +701,16 @@ p.champ_alerte {
   .like_confirm {
     font-size: 42px;
   }
+
+  .form_identite {
+    max-width: 480px;
+    margin: auto;
+    margin-bottom: 10px;
+  }
+
+  .param_compte h1 {
+    margin: 0;
+  }
 }
 
 /* Tablettes landscape et petits écrans de bureau */
@@ -657,6 +723,9 @@ p.champ_alerte {
     margin-left: 40px;
   }
 
+  .param_compte h1 {
+    margin: 0;
+  }
 }
 
 /* moyens écrans de bureau */
@@ -664,11 +733,17 @@ p.champ_alerte {
   .page_connexion input {
     width:98%;
   }
+  .param_compte h1 {
+    margin: 0;
+  }
 }
 
 /* grands écrans de bureau*/
 @media (min-width: 1600px) {
   .page_connexion input {
     width:98.5%;
+  }
+  .param_compte h1 {
+    margin: 0;
   }
 }

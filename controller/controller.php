@@ -197,41 +197,47 @@ function postCommentaire($acteurId, $userId ,$commentaire)
 {
     $commentVerif = new CommentaireManager();
     $commentaireExiste = $commentVerif->commentaireExiste($acteurId, $userId);
-    if (!$commentaireExiste) {
+    if ($commentaireExiste) {
         $commentaireManager = new CommentaireManager();
-        $commentaireManager->insererCommentaire($commentaire);
+        $commentaireEdit = $commentaireManager->editerCommentaire($acteurId, $userId ,$commentaire);
+    }
+    elseif (!$commentaireExiste) {
+        $commentaireManager = new CommentaireManager();
+        $commentaireInsere = $commentaireManager->insererCommentaire($acteurId, $userId ,$commentaire);
     }
 }
 
-function postDislike($acteurId, $userName)
+function postDislike($acteurId, $userId)
 {
     $likeVerif = new LikeManager();
-    $likeExiste = $likeVerif->checkLike($acteurId, $userName);
+    $likeExiste = $likeVerif->checkLike($acteurId, $userId);
     if ($likeExiste) {
-
-    }
-    else {
       $dislikeManager = new LikeManager();
-      $dislikeManager->ajouterDislike($acteurId, $userName);
-    }
-}
-
-function postLike($acteurId, $userName)
-{
-    $likeVerif = new LikeManager();
-    $likeExiste = $likeVerif->checkLike($acteurId, $userName);
-    if ($likeExiste) {
-
+      $dislikeManager->editerDislike($acteurId, $userId);
     }
     else {
         $dislikeManager = new LikeManager();
-        $dislikeManager->ajouterLike($acteurId, $userName);
+        $dislikeManager->ajouterDislike($acteurId, $userId);
     }
 }
 
-function paramCompte($userName)
+function postLike($acteurId, $userId)
+{
+    $likeVerif = new LikeManager();
+    $likeExiste = $likeVerif->checkLike($acteurId, $userId);
+    if ($likeExiste) {
+        $dislikeManager = new LikeManager();
+        $dislikeManager->editerLike($acteurId, $userId);
+    }
+    else {
+        $dislikeManager = new LikeManager();
+        $dislikeManager->ajouterLike($acteurId, $userId);
+    }
+}
+
+function paramCompte($userId)
 {
     $utilisateurManager = new UtilisateurManager();
-    $infosCompte = $utilisateurManager->infosCompte($userName);
+    $infosCompte = $utilisateurManager->infosCompte($userId);
     require('view/frontend/page_param_compte.php');
 }

@@ -23,7 +23,6 @@ try {
                 if (isset($_POST['commentaire'])) {
                     postCommentaire($_GET['acteurid'], $_SESSION['user_id'], htmlspecialchars($_POST['commentaire']));
                 }
-                // Reprendre ici
                 elseif (isset($_POST['like'])) {
                     postLike($_GET['acteurid'], $_SESSION['user_id']);
                 }

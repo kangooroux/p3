@@ -39,11 +39,19 @@ class CommentaireManager extends Manager
         return $donnees;
     }
 
-    public function insererCommentaire($commentaire)
+    public function insererCommentaire($acteurId, $userId ,$commentaire)
     {
-      $db = $this->dbConnect();
-      $user = $db->prepare('INSERT INTO commentaires(user_id, commentaire, date_pub, acteur_id) VALUES(?, ?, NOW(), ?)');
-      $nouvelleEntree = $user->execute([$_SESSION['user_id'], $commentaire, $_GET['acteurid']]);
-      return $nouvelleEntree;
+        $db = $this->dbConnect();
+        $req = $db->prepare('INSERT INTO commentaires(user_id, commentaire, date_pub, acteur_id) VALUES(?, ?, NOW(), ?)');
+        $nouveauCommentaire = $req->execute([$userId, $commentaire, $acteurId]);
+        return $nouveauCommentaire;
+    }
+
+    public function editerCommentaire($acteurId, $userId ,$commentaire)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('UPDATE commentaires SET commentaire = ? WHERE user_id = ? AND acteur_id = ?');
+        $editCommentaire = $req->execute([$commentaire, $userId, $acteurId]);
+        return $editCommentaire;
     }
 }

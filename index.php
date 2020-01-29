@@ -32,10 +32,21 @@ try {
                 acteur($_GET['acteurid'], $_SESSION['user_id']);
             }
             elseif ($_GET['page'] == 'paramcompte') {
-                paramCompte($_SESSION['user_id']);
+                if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['user_name'])) {
+                    modifierIdentite(htmlspecialchars($_POST['nom']), htmlspecialchars($_POST['prenom']), htmlspecialchars($_POST['user_name']), $_SESSION['user_id']);
+                }
+                elseif (isset($_POST['mdp']) && isset($_POST['confirm_mdp'])) {
+                    modifierMotDePasse(htmlspecialchars($_POST['mdp']), htmlspecialchars($_POST['confirm_mdp']), $_SESSION['user_id']);
+                }
+                elseif (isset($_POST['question']) && isset($_POST['reponse'])) {
+                    modifierQuestionReponse(htmlspecialchars($_POST['question']), htmlspecialchars($_POST['reponse']), $_SESSION['user_id']);
+                }
+                else {
+                    paramCompte($_SESSION['user_id']);
+                }
             }
             else {
-                echo "Cette page n'existe pas";
+                pageNonTrouvee();
             }
         }
         else {
@@ -73,7 +84,7 @@ try {
             contact();
         }
         else {
-            echo "Cette page n'existe pas";
+            pageNonTrouvee();
         }
     }
     elseif (isset($_POST['nom']) && ($_POST['prenom']) && ($_POST['userName']) && ($_POST['mdp']) && ($_POST['confirmMdp']) && ($_POST['questionSecrete']) && ($_POST['reponseSecrete'])) {

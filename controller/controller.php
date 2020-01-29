@@ -7,12 +7,6 @@ require_once('model/ActeurManager.php');
 require_once('model/CommentaireManager.php');
 require_once('model/LikeManager.php');
 
-// A retirer avant de rendre le projet
-require_once('public/src/IceCream/IceCream.php');
-require_once('public/src/IceCream/functions.php');
-use function IceCream\ic;
-// A retirer avant de rendre le projet
-
 function defaut()
 {
     require('view/frontend/page_connexion.php');
@@ -240,4 +234,52 @@ function paramCompte($userId)
     $utilisateurManager = new UtilisateurManager();
     $infosCompte = $utilisateurManager->infosCompte($userId);
     require('view/frontend/page_param_compte.php');
+}
+
+function pageNonTrouvee()
+{
+    require('view/frontend/page_non_trouvee.php');
+}
+
+function modifierIdentite($nom, $prenom, $userName, $userId)
+{
+    $utilisateurManager = new UtilisateurManager();
+    $infosModif = $utilisateurManager->modifierInfos($nom, $prenom, $userName, $userId);
+    if ($infosModif) {
+      $_SESSION['nom'] = $nom;
+      $_SESSION['prenom'] = $prenom;
+      $utilisateurManager = new UtilisateurManager();
+      $infosCompte = $utilisateurManager->infosCompte($userId);
+      require('view/frontend/page_param_compte.php');
+    }
+}
+
+function modifierMotDePasse($nouveauMdp, $confirmNouveauMdp, $userId)
+{
+    if ($nouveauMdp != $confirmNouveauMdp) {
+        $mdpNonConcordance = '';
+        $utilisateurManager = new UtilisateurManager();
+        $infosCompte = $utilisateurManager->infosCompte($userId);
+        require('view/frontend/page_param_compte.php');
+    }
+    else {
+        $utilisateurManager = new UtilisateurManager();
+        $modifMdp = $utilisateurManager->modifierMdp($nouveauMdp, $userId);
+        if ($modifMdp) {
+            $utilisateurManager = new UtilisateurManager();
+            $infosCompte = $utilisateurManager->infosCompte($userId);
+            require('view/frontend/page_param_compte.php');
+        }
+    }
+}
+
+function modifierQuestionReponse($question, $reponse, $userId)
+{
+    $utilisateurManager = new UtilisateurManager();
+    $modifQR = $utilisateurManager->modifierQR($question, $reponse, $userId);
+    if ($modifQR) {
+        $utilisateurManager = new UtilisateurManager();
+        $infosCompte = $utilisateurManager->infosCompte($userId);
+        require('view/frontend/page_param_compte.php');
+    }
 }

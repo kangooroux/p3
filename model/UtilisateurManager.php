@@ -80,7 +80,33 @@ class UtilisateurManager extends Manager
         $db = $this->dbConnect();
         $user = $db->prepare('SELECT nom, prenom, user_name, question FROM utilisateurs WHERE user_id = :user_id');
         $user->execute(array('user_id' => $userId));
-        $verif = $user->fetch();
-        return $verif;
+        $infos = $user->fetch();
+        return $infos;
+    }
+
+    public function modifierInfos($nom, $prenom, $userName, $userId)
+    {
+        $db = $this->dbConnect();
+        $user = $db->prepare('UPDATE utilisateurs SET nom = ?, prenom = ?, user_name = ? WHERE user_id = ?');
+        $modifEntree = $user->execute([$nom, $prenom, $userName, $userId]);
+        return $modifEntree;
+    }
+
+    public function modifierMdp($nouveauMdp, $userId)
+    {
+        $nouveauMdp = password_hash($nouveauMdp, PASSWORD_DEFAULT);
+        $db = $this->dbConnect();
+        $user = $db->prepare('UPDATE utilisateurs SET mdp = ? WHERE user_id = ?');
+        $modifEntree = $user->execute([$nouveauMdp, $userId]);
+        return $modifEntree;
+    }
+
+    public function modifierQR($question, $reponse, $userId)
+    {
+        $reponse = password_hash($reponse, PASSWORD_DEFAULT);
+        $db = $this->dbConnect();
+        $user = $db->prepare('UPDATE utilisateurs SET question = ? , reponse = ? WHERE user_id = ?');
+        $modifEntree = $user->execute([$question, $reponse, $userId]);
+        return $modifEntree;
     }
 }

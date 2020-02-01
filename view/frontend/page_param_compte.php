@@ -15,7 +15,12 @@
             <fieldset>
                   <label for="nom">Nom</label><input type="text" name="nom" value="<?php echo $infosCompte['nom']; ?>" required/>
                   <label for="prenom">Prenom</label><input type="text" name="prenom" value="<?php echo $infosCompte['prenom']; ?>" required/>
-                  <label for="user_name">Identifiant</label><input type="text" name="user_name" value="<?php echo $infosCompte['user_name']; ?>" required/>
+                  <?php if (isset($identifiantConcordance)): ?>
+                      <label for="user_name">Identifiant</label><input type="text" name="user_name" value="<?php echo $userName; ?>" required/>
+                      <p class="champ_alerte">* Identifiant déja utilisé</p>
+                  <?php else: ?>
+                      <label for="user_name">Identifiant</label><input type="text" name="user_name" value="<?php echo $infosCompte['user_name']; ?>" required/>
+                  <?php endif; ?>
                   <input type="submit" name="maj" value="Mettre à jour">
             </fieldset>
         </form>

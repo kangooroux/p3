@@ -243,14 +243,39 @@ function pageNonTrouvee()
 
 function modifierIdentite($nom, $prenom, $userName, $userId)
 {
-    $utilisateurManager = new UtilisateurManager();
-    $infosModif = $utilisateurManager->modifierInfos($nom, $prenom, $userName, $userId);
-    if ($infosModif) {
-      $_SESSION['nom'] = $nom;
-      $_SESSION['prenom'] = $prenom;
-      $utilisateurManager = new UtilisateurManager();
-      $infosCompte = $utilisateurManager->infosCompte($userId);
-      require('view/frontend/page_param_compte.php');
+    $verifIdentifiant = new UtilisateurManager();
+    $confirmationIdentifiant = $verifIdentifiant->verifEditIdentifiant($userName, $userId);
+    if ($confirmationIdentifiant) {
+        $utilisateurManager = new UtilisateurManager();
+        $infosModif = $utilisateurManager->modifierInfos($nom, $prenom, $userName, $userId);
+        if ($infosModif) {
+          $_SESSION['nom'] = $nom;
+          $_SESSION['prenom'] = $prenom;
+          $utilisateurManager = new UtilisateurManager();
+          $infosCompte = $utilisateurManager->infosCompte($userId);
+          require('view/frontend/page_param_compte.php');
+        }
+    }
+    else {
+        $identifiantExist = new UtilisateurManager();
+        $confirmationIdentifiantExiste = $verifIdentifiant->verifIdentifiant($userName);
+        if ($confirmationIdentifiantExiste) {
+            $utilisateurManager = new UtilisateurManager();
+            $infosCompte = $utilisateurManager->infosCompte($userId);
+            $identifiantConcordance = "";
+            require('view/frontend/page_param_compte.php');
+        }
+        elseif (!$confirmationIdentifiantExiste) {
+            $utilisateurManager = new UtilisateurManager();
+            $infosModif = $utilisateurManager->modifierInfos($nom, $prenom, $userName, $userId);
+            if ($infosModif) {
+              $_SESSION['nom'] = $nom;
+              $_SESSION['prenom'] = $prenom;
+              $utilisateurManager = new UtilisateurManager();
+              $infosCompte = $utilisateurManager->infosCompte($userId);
+              require('view/frontend/page_param_compte.php');
+            }
+        }
     }
 }
 

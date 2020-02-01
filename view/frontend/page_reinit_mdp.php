@@ -13,8 +13,9 @@
     <?php if ((isset($afficherquestion)) || (isset($mauvaiseReponse))): ?>
     <label for="reponseMdpReset">Saisissez la réponse à la question:</label><input name="reponseMdpReset" type="text" id="reponseMdpReset" required/><br />
     <?php elseif ((isset($bonneReponse)) || (isset($mdpNonConcordance))): ?>
-    <label for="nouveauMdp">Saisissez le nouveau mot de passe :</label><input name="nouveauMdp" type="password" id="nouveauMdp" required/><br />
-    <label for="confirmNouveauMdp">Confirmer le nouveau mot de passe :</label><input name="confirmNouveauMdp" type="password" id="confirmNouveauMdp" required/><br />
+    <label for="nouveauMdp">Saisissez le nouveau mot de passe :</label><input name="nouveauMdp" type="password" id="nouveauMdp" minlength="4" maxlength="30" required/><br />
+    <label for="confirmNouveauMdp">Confirmer le nouveau mot de passe :</label><input name="confirmNouveauMdp" type="password" id="confirmNouveauMdp" minlength="4" maxlength="30" required/><br />
+    <p class="exigences_saisies"> *Votre mot de passe doit comporter au moins 4 caractères et un maximum de 30 caractères.</p>
     <?php elseif ((empty($_POST)) || isset($afficherNExistePas)): ?>
     <label for="userNameMdpReset">Saisissez votre nom d'utilisateur:</label><input name="userNameMdpReset" type="text" id="userNameMdpReset" required/><br />
     <?php endif; ?>

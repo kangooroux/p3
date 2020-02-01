@@ -12,10 +12,10 @@
     <?php endif; ?>
     <form method="post" action="index.php">
         <fieldset>
-                <label for="identifiant">Identifiant :</label><input name="identifiant" type="text" id="identifiant" required/><br />
-                <label for="motDePasse">Mot de Passe :</label><input type="password" name="motDePasse" id="motDePasse" required/>
+                <label for="identifiant">Nom d'utilisateur :</label><input name="identifiant" type="text" id="identifiant" maxlength="30" required/><br />
+                <label for="motDePasse">Mot de Passe :</label><input type="password" name="motDePasse" id="motDePasse" maxlength="30" required/>
                 <?php if (isset($mauvaisIdentifiants)): ?>
-                <p class="champ_alerte">* Identifiant ou mot de passe érroné</p>
+                <p class="champ_alerte">* Nom d'utilisateur ou mot de passe érroné</p>
                 <?php endif; ?>
         </fieldset>
         <p><input type="submit" value="Se connecter" class="submit" /></p>

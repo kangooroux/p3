@@ -190,6 +190,10 @@ p.champ_alerte {
   cursor: pointer;
 }
 
+.exigences_saisies {
+  font-size: 12px;
+}
+
 .conteneur_utilisateur a > p {
   font-size: 16px;
 }

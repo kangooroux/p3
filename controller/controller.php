@@ -7,7 +7,7 @@ require_once('model/ActeurManager.php');
 require_once('model/CommentaireManager.php');
 require_once('model/LikeManager.php');
 
-function defaut()
+function pageConnexion()
 {
     require('view/frontend/page_connexion.php');
 }

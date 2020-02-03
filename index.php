@@ -96,7 +96,7 @@ try {
         pageActeurs();
     }
     else {
-        defaut();
+        pageConnexion();
     }
 }
 catch(Exception $e) {

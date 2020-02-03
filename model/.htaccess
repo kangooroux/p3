@@ -1,1 +1,2 @@
 deny from all
+ErrorDocument 403 http://localhost/p3/?page=403

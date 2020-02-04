@@ -2,8 +2,8 @@
 
 <?php ob_start(); ?>
 
-<h1>Inscription</h1>
     <section>
+        <h1>Inscription</h1>
         <form class="" action="index.php" method="post">
             <fieldset>
                 <label for="nom">Nom :</label><input name="nom" type="text" id="nom" maxlength="100" required/><br />

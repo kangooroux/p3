@@ -1,3 +1,4 @@
+<!-- Modèle de page header et footer pour la partie déconnecté (Page connexion, page demande nouveau mot de passe et page d'inscription)-->
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
     <head>

@@ -1,3 +1,4 @@
+<!-- Modèle de page header et footer pour la partie un fois connecté avec ses identifiants-->
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
     <head>

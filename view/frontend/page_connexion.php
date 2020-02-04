@@ -2,8 +2,9 @@
 
 <?php ob_start(); ?>
 
-<h1>Connexion</h1>
+
 <section>
+    <h1>Connexion</h1>
     <?php if (isset($nouveauMdpSucces) == FALSE): ?>
     <p class="texte_lien_inscription">Vous n'avez pas de compte ? <a href="?page=inscription">S'inscrire</a></p>
     <?php endif; ?>

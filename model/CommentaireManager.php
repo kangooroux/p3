@@ -8,7 +8,7 @@ class CommentaireManager extends Manager
     public function listeCommentaires($acteurId)
     {
         $db = $this->dbConnect();
-        $donnees = $db->query('SELECT u.prenom prenom, c.date_pub date_pub, c.commentaire commentaire FROM commentaires c INNER JOIN utilisateurs u ON u.user_id = c.user_id WHERE c.acteur_id ='. $acteurId . '');
+        $donnees = $db->query('SELECT u.prenom prenom, DATE_FORMAT(c.date_pub, "%d") AS jour, DATE_FORMAT(c.date_pub, "%m") AS mois, YEAR(c.date_pub) AS annee, HOUR(c.date_pub) AS heure, MINUTE(c.date_pub) AS minute, SECOND(c.date_pub) AS seconde , c.commentaire commentaire FROM commentaires c INNER JOIN utilisateurs u ON u.user_id = c.user_id WHERE c.acteur_id ='. $acteurId . '');
         $commentairesTotal = 0;
         while ($commentaires = $donnees->fetch()) {
             $commentairesTotal++;
@@ -50,7 +50,7 @@ class CommentaireManager extends Manager
     public function editerCommentaire($acteurId, $userId ,$commentaire)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('UPDATE commentaires SET commentaire = ? WHERE user_id = ? AND acteur_id = ?');
+        $req = $db->prepare('UPDATE commentaires SET commentaire = ? , date_pub = NOW() WHERE user_id = ? AND acteur_id = ?');
         $editCommentaire = $req->execute([$commentaire, $userId, $acteurId]);
         return $editCommentaire;
     }

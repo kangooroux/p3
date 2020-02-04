@@ -386,6 +386,10 @@ p.champ_alerte {
   margin-left: 30px;
 }
 
+.bulle_commentaire p{
+  margin-bottom: 2px;
+}
+
 .commentaire_envoi {
   display: block;
 }
@@ -425,7 +429,7 @@ p.champ_alerte {
 
 .bulle_commentaire input {
   color: #ffffff;
-  background-color: #666666;
+  background-color: #d63520;
   width:127px;
   height:42px;
   border:none;

@@ -5,6 +5,8 @@
 <?php if (isset($_GET['nouveaucommentaire'])): ?>
     <form class="bulle_commentaire" action="?page=acteur&acteurid=<?php echo $acteurAffiche['acteur_id']; ?>" method="post">
         <label for="commentaire" class="commentaire_label">Laisser votre commentaire : </label>
+        <p><?php echo $_SESSION['prenom'] . ','; ?></p>
+        <p><?php echo 'le ' . date('d') . '/' . date('m') . '/' . date('Y')?></p>
         <textarea name="commentaire" class="commentaire_zone"></textarea>
         <input type="hidden" name="nouveau_commentaire" value="">
         <input type="submit" name="envoyer_commentaire" value="Envoyer" class="commentaire_envoi">
@@ -12,6 +14,8 @@
 <?php elseif (isset($_GET['modifcommentaire'])): ?>
     <form class="bulle_commentaire" action="?page=acteur&acteurid=<?php echo $acteurAffiche['acteur_id']; ?>" method="post">
         <label for="commentaire" class="commentaire_label">Modifier votre commentaire : </label>
+        <p><?php echo $_SESSION['prenom'] . ','; ?></p>
+        <p><?php echo 'le ' . date('d') . '/' . date('m') . '/' . date('Y')?></p>
         <input type="hidden" name="modif_commentaire" value="">
         <textarea name="commentaire" class="commentaire_zone"><?php echo $commentaireExiste['commentaire'];; ?></textarea>
         <input type="submit" name="envoyer_commentaire" value="Modifier" class="commentaire_envoi">
@@ -72,29 +76,29 @@
         <?php if (!$likeExiste): ?>
             <form method="post" action="?page=acteur&acteurid=<?php echo $acteurAffiche['acteur_id']; ?>" class="boutton_like">
                 <input type="hidden" name="like" value="">
-                <input type="image" src="public/images/ThumbsUp_40975.png" name="like" value="like" />
+                <input type="image" src="public/images/ThumbsUp_40975.png" name="like" alt="image thumb up vert" />
             </form>
             <form method="post" action="?page=acteur&acteurid=<?php echo $acteurAffiche['acteur_id']; ?>" class="boutton_dislike">
                 <input type="hidden" name="dislike" value="">
-                <input type="image" src="public/images/ThumbsDown_40974.png" name="dislike" value="dislike" />
+                <input type="image" src="public/images/ThumbsDown_40974.png" name="dislike" alt="image thumb down rouge" />
             </form>
         <?php elseif ($likeExiste['vote'] == 1): ?>
             <div class="boutton_like">
               <input type="hidden" name="like" value="">
-              <input type="image" src="public/images/ThumbsUp_40975.png" name="like" value="like" />
+              <input type="image" src="public/images/ThumbsUp_40975.png" name="like" alt="image thumb up vert" />
             </div>
             <form method="post" action="?page=acteur&acteurid=<?php echo $acteurAffiche['acteur_id']; ?>" class="boutton_dislike">
                 <input type="hidden" name="dislike" value="">
-                <input type="image" src="public/images/ThumbsDown_40974.png" name="dislike" value="dislike" />
+                <input type="image" src="public/images/ThumbsDown_40974.png" name="dislike" alt="image thumb down rouge" />
             </form>
         <?php elseif ($likeExiste['vote'] == -1): ?>
             <form method="post" action="?page=acteur&acteurid=<?php echo $acteurAffiche['acteur_id']; ?>" class="boutton_like">
                 <input type="hidden" name="like" value="">
-                <input type="image" src="public/images/ThumbsUp_40975.png" name="like" value="like" />
+                <input type="image" src="public/images/ThumbsUp_40975.png" name="like" alt="image thumb up vert" />
             </form>
             <div class="boutton_dislike">
                 <input type="hidden" name="dislike" value="">
-                <input type="image" src="public/images/ThumbsDown_40974.png" name="dislike" value="dislike" />
+                <input type="image" src="public/images/ThumbsDown_40974.png" name="dislike" alt="image thumb down rouge" />
             </div>
         <?php endif; ?>
     </div>

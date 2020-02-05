@@ -170,7 +170,9 @@ function acteur($acteurId, $userId)
         $compteurutilisateurManager = new CommentaireManager();
         $compteur = $compteurutilisateurManager->compterCommentaires($acteurId);
         $compteurLikesManager = new LikeManager();
-        $likes = $compteurLikesManager->compterVote($acteurId);
+        $likes = $compteurLikesManager->compterLike($acteurId);
+        $compteurDislikesManager = new LikeManager();
+        $dislikes = $compteurDislikesManager->compterDislike($acteurId);
         $commentVerif = new CommentaireManager();
         $commentaireExiste = $commentVerif->commentaireExiste($acteurId, $userId);
         $likeVerif = new LikeManager();

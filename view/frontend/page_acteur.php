@@ -5,8 +5,7 @@
 <?php if (isset($_GET['nouveaucommentaire'])): ?>
     <form class="bulle_commentaire" action="?page=acteur&acteurid=<?php echo $acteurAffiche['acteur_id']; ?>" method="post">
         <label for="commentaire" class="commentaire_label">Laisser votre commentaire : </label>
-        <p><?php echo $_SESSION['prenom'] . ','; ?></p>
-        <p><?php echo 'le ' . date('d') . '/' . date('m') . '/' . date('Y')?></p>
+        <input type="text" name="" value="<?php echo $_SESSION['prenom'] . ', '; ?><?php echo 'le ' . date('d') . '/' . date('m') . '/' . date('Y')?>" readonly>
         <textarea name="commentaire" class="commentaire_zone"></textarea>
         <input type="hidden" name="nouveau_commentaire" value="">
         <input type="submit" name="envoyer_commentaire" value="Envoyer" class="commentaire_envoi">
@@ -14,8 +13,7 @@
 <?php elseif (isset($_GET['modifcommentaire'])): ?>
     <form class="bulle_commentaire" action="?page=acteur&acteurid=<?php echo $acteurAffiche['acteur_id']; ?>" method="post">
         <label for="commentaire" class="commentaire_label">Modifier votre commentaire : </label>
-        <p><?php echo $_SESSION['prenom'] . ','; ?></p>
-        <p><?php echo 'le ' . date('d') . '/' . date('m') . '/' . date('Y')?></p>
+        <input type="text" name="" value="<?php echo $_SESSION['prenom'] . ', '; ?><?php echo 'le ' . date('d') . '/' . date('m') . '/' . date('Y')?>" readonly>
         <input type="hidden" name="modif_commentaire" value="">
         <textarea name="commentaire" class="commentaire_zone"><?php echo $commentaireExiste['commentaire'];; ?></textarea>
         <input type="submit" name="envoyer_commentaire" value="Modifier" class="commentaire_envoi">
@@ -64,14 +62,10 @@
             <p class="deja_like">Vous avez disliké cet acteur/partenaire.</p>
         <?php endif; ?>
         <div class="compteur_likes">
-            <?php if ($likes >= 0): ?>
                 <img src="public/images/uparrow_arriba_1538.png" alt="">
                 <span class="nombre_likes"><?php echo $likes; ?></span>
-            <?php endif; ?>
-            <?php if ($likes < 0): ?>
                 <img src="public/images/arrowdown_flech_1539.png" alt="">
-                <span class="nombre_likes"><?php echo $likes; ?></span>
-            <?php endif; ?>
+                <span class="nombre_dislikes"><?php echo $dislikes; ?></span>
         </div>
         <?php if (!$likeExiste): ?>
             <form method="post" action="?page=acteur&acteurid=<?php echo $acteurAffiche['acteur_id']; ?>" class="boutton_like">

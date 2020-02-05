@@ -400,7 +400,8 @@ p.champ_alerte {
 
 .compteur_likes {
   display: block;
-  margin-left: 40%;
+  display: grid 25% 25% 25% 25%;
+  margin-left: 30%;
   margin-top: 10px;
 }
 
@@ -409,14 +410,12 @@ p.champ_alerte {
   max-height: 32px;
 }
 
-.compteur_likes {
-  display: block;
-  top: 0;
-  right: 190px;
+.nombre_likes {
+
 }
 
-.nombre_likes {
-  position: absolute;
+.nombre_dislikes {
+
 }
 
 .commentaire_zone {
@@ -427,7 +426,7 @@ p.champ_alerte {
 	padding: 5px;
 }
 
-.bulle_commentaire input {
+.bulle_commentaire input[type=submit] {
   color: #ffffff;
   background-color: #d63520;
   width:127px;
@@ -437,6 +436,13 @@ p.champ_alerte {
   cursor:pointer;
   margin-bottom: 10px;
   border-radius: 5px;
+}
+
+.bulle_commentaire input[type=text] {
+    border: 3px solid #cccccc;
+    padding: 5px;
+    width:90%;
+    margin-bottom: 5px;
 }
 
 .commentaire_label {
@@ -658,7 +664,7 @@ body > main > section.conteneur_commentaires > div.conteneur_infos-bouton_commen
     position: absolute;
     display: inline-block;
     max-width: 160px;
-    right: 250px;
+    right: 265px;
     top: 5px;
     text-align: center;
   }
@@ -674,13 +680,9 @@ body > main > section.conteneur_commentaires > div.conteneur_infos-bouton_commen
     position: absolute;
     display: block;
     top: 0;
-    right: 190px;
+    right: 140px;
   }
 
-  .nombre_likes {
-    position: absolute;
-    bottom: 0px;
-  }
 
   .conteneur_commentaires h3 {
     display: inline-block;
@@ -704,6 +706,10 @@ body > main > section.conteneur_commentaires > div.conteneur_infos-bouton_commen
   .commentaire_zone {
     width: 95%;
     min-height: 100px;
+  }
+
+  .bulle_commentaire input[type=text] {
+      width:95%;
   }
 
   .conteneur_confirm {

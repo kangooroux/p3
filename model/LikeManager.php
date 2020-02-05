@@ -4,16 +4,28 @@ require_once("Manager.php");
 
 class LikeManager extends Manager
 {
-    public function compterVote($acteurId)
+    public function compterLike($acteurId)
     {
         $db = $this->dbConnect();
-        $donnees = $db->query('SELECT * FROM likes WHERE acteur_id ='. $acteurId . '');
+        $donnees = $db->query('SELECT * FROM likes WHERE acteur_id ='. $acteurId . ' AND vote = 1');
         $likesTotal = 0;
         while ($likes = $donnees->fetch()) {
             $likesTotal = $likesTotal + $likes['vote'];
         }
         $donnees->closeCursor();
         return $likesTotal;
+    }
+
+    public function compterDislike($acteurId)
+    {
+        $db = $this->dbConnect();
+        $donnees = $db->query('SELECT * FROM likes WHERE acteur_id ='. $acteurId . ' AND vote = -1');
+        $dislikesTotal = 0;
+        while ($likes = $donnees->fetch()) {
+            $dislikesTotal = $dislikesTotal + $likes['vote'];
+        }
+        $donnees->closeCursor();
+        return $dislikesTotal;
     }
 
     public function ajouterLike($acteurId, $userId)

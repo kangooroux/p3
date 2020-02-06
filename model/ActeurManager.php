@@ -8,7 +8,7 @@ class ActeurManager extends Manager
     public function listeActeurs()
     {
         $db = $this->dbConnect();
-        $donnees = $db->query('SELECT acteur_id, chemin_logo_acteur, nom_acteur, premiere_ligne, acteur_lien FROM acteurs');
+        $donnees = $db->query('SELECT acteur_id, chemin_logo_acteur, nom_acteur, contenu_textuel FROM acteurs');
         while ($acteurs = $donnees->fetch()) {
             require('view/frontend/vignette_acteur_template.php');
         }

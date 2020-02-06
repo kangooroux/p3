@@ -43,7 +43,6 @@
 <section class="page_acteur">
     <div class="page_acteur_logo"> <img src="<?php echo $acteurAffiche['chemin_logo_acteur']; ?>" alt=""> </div>
     <h2><?php echo $acteurAffiche['nom_acteur']; ?></h2>
-    <a href="#" class='acteur_lien_ext'><?php echo $acteurAffiche['acteur_lien']; ?></a>
     <?php echo $acteurAffiche['contenu_textuel']; ?>
 </section>
 

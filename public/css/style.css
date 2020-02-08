@@ -347,9 +347,8 @@ p.champ_alerte {
 
 .conteneur_infos-bouton_commentaires .boutton_like, .conteneur_infos-bouton_commentaires .boutton_dislike {
   display: inline-block;
-  margin: auto;
+  margin: 0 auto;
   width: 33%;
-  margin-left: 15%;
 }
 
 .vignette_commentaire {
@@ -368,7 +367,9 @@ p.champ_alerte {
 .nouveau_commentaire {
   display: inline-block;
   width: 100%;
-  margin-left: 22%;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  margin: 0 auto;
   text-align: center;
   min-height: 38px;
   max-width: 160px;
@@ -399,8 +400,10 @@ p.champ_alerte {
 
 .compteur_likes {
   display: block;
+  grid-column-start: 1;
+  grid-column-end: 3;
   display: grid 25% 25% 25% 25%;
-  margin-left: 45%;
+  margin: 0 auto;
   margin-top: 10px;
 }
 
@@ -460,6 +463,9 @@ p.champ_alerte {
 .deja_commente, .deja_like {
   color: #313131;
   text-align: center;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  margin: 0 auto;
 }
 
 .image_like_confirm {
@@ -545,6 +551,19 @@ body > main > section.conteneur_commentaires > div.conteneur_infos-bouton_commen
 .modif_param_succes {
   font-size: 20px;
   font-style: italic;
+}
+
+.conteneur_infos-bouton_commentaires {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 20px;
+}
+
+.conteneur_infos-bouton_commentaires > h3 {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  margin: 0 auto;
 }
 
 /* Tablettes Portrait */

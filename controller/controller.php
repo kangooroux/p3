@@ -173,6 +173,7 @@ function acteur($acteurId, $userId)
         $likes = $compteurLikesManager->compterLike($acteurId);
         $compteurDislikesManager = new LikeManager();
         $dislikes = $compteurDislikesManager->compterDislike($acteurId);
+        $voteTotal = $likes + $dislikes;
         $commentVerif = new CommentaireManager();
         $commentaireExiste = $commentVerif->commentaireExiste($acteurId, $userId);
         $likeVerif = new LikeManager();

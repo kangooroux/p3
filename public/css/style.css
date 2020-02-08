@@ -220,7 +220,6 @@ p.champ_alerte {
 }
 
 .page_connecte section p {
-  text-align: left;
   margin-left: 40px;
   margin-right: 40px;
   margin-top: 5px;
@@ -401,7 +400,7 @@ p.champ_alerte {
 .compteur_likes {
   display: block;
   display: grid 25% 25% 25% 25%;
-  margin-left: 30%;
+  margin-left: 45%;
   margin-top: 10px;
 }
 
@@ -460,6 +459,7 @@ p.champ_alerte {
 
 .deja_commente, .deja_like {
   color: #313131;
+  text-align: center;
 }
 
 .image_like_confirm {
@@ -745,6 +745,11 @@ body > main > section.conteneur_commentaires > div.conteneur_infos-bouton_commen
   body > main > section.conteneur_commentaires > div.conteneur_infos-bouton_commentaires > h3 {
     font-size: 30px;
     margin-bottom: 15px;
+  }
+
+  .deja_commente, .deja_like {
+    color: #313131;
+    text-align: left;
   }
 }
 

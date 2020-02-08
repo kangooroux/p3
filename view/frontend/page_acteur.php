@@ -60,12 +60,25 @@
         <?php elseif ($likeExiste['vote'] == -1): ?>
             <p class="deja_like">Vous avez disliké cet acteur/partenaire.</p>
         <?php endif; ?>
-        <div class="compteur_likes">
+        <!-- Deux compteur séparé pour like et dislike -->
+        <!-- <div class="compteur_likes">
                 <img src="public/images/uparrow_arriba_1538.png" alt="">
                 <span class="nombre_likes"><?php echo $likes; ?></span>
                 <img src="public/images/arrowdown_flech_1539.png" alt="">
                 <span class="nombre_dislikes"><?php echo $dislikes; ?></span>
-        </div>
+        </div> -->
+        <!-- compteur unique pour le total des votes -->
+        <?php if ($voteTotal >= 0): ?>
+            <div class="compteur_likes">
+                <img src="public/images/uparrow_arriba_1538.png" alt="">
+                <span class="nombre_likes"><?php echo $voteTotal; ?></span>
+            </div>
+        <?php elseif ($voteTotal < 0): ?>
+            <div class="compteur_likes">
+                <img src="public/images/arrowdown_flech_1539.png" alt="">
+                <span class="nombre_dislikes"><?php echo $voteTotal; ?></span>        
+            </div>
+        <?php endif; ?>
         <?php if (!$likeExiste): ?>
             <form method="post" action="?page=acteur&acteurid=<?php echo $acteurAffiche['acteur_id']; ?>" class="boutton_like">
                 <input type="hidden" name="like" value="">

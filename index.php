@@ -1,5 +1,5 @@
 <?php
-require_once('controller/controller.php');
+require_once('fonctions/fonctions.php');
 
 try {
     if (isset($_POST['deconnexion'])) {

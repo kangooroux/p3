@@ -2,10 +2,10 @@
 
 session_start();
 
-require_once('model/UtilisateurManager.php');
-require_once('model/ActeurManager.php');
-require_once('model/CommentaireManager.php');
-require_once('model/LikeManager.php');
+require_once('manager/UtilisateurManager.php');
+require_once('manager/ActeurManager.php');
+require_once('manager/CommentaireManager.php');
+require_once('manager/LikeManager.php');
 
 function pageConnexion()
 {

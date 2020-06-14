@@ -55,18 +55,14 @@
             <a href="?page=acteur&acteurid=<?php echo $acteurAffiche['acteur_id']; ?>&modifcommentaire" class="nouveau_commentaire">Modifer <br>commentaire</a>
             <p class="deja_commente">Vous avez commenté cet acteur/partenaire.</p>
         <?php endif; ?>
-        <?php if ($likeExiste['vote'] == 1): ?>
-            <p class="deja_like">Vous avez liké cet acteur/partenaire.</p>
-        <?php elseif ($likeExiste['vote'] == -1): ?>
-            <p class="deja_like">Vous avez disliké cet acteur/partenaire.</p>
-        <?php endif; ?>
-        <!-- Deux compteur séparé pour like et dislike -->
-        <!-- <div class="compteur_likes">
-                <img src="public/images/uparrow_arriba_1538.png" alt="">
-                <span class="nombre_likes"><?php echo $likes; ?></span>
-                <img src="public/images/arrowdown_flech_1539.png" alt="">
-                <span class="nombre_dislikes"><?php echo $dislikes; ?></span>
-        </div> -->
+        <?php if (isset($likeExiste['vote'])) {
+            if ($likeExiste['vote'] == 1) {
+              echo "<p class=\"deja_like\">Vous avez liké cet acteur/partenaire.</p>";
+            } elseif ($likeExiste['vote'] == -1) {
+              echo "<p class=\"deja_like\">Vous avez disliké cet acteur/partenaire.</p>";
+            }
+        } ?>
+        
         <!-- compteur unique pour le total des votes -->
         <?php if ($voteTotal >= 0): ?>
             <div class="compteur_likes">
@@ -76,7 +72,7 @@
         <?php elseif ($voteTotal < 0): ?>
             <div class="compteur_likes">
                 <img src="public/images/arrowdown_flech_1539.png" alt="">
-                <span class="nombre_dislikes"><?php echo $voteTotal; ?></span>        
+                <span class="nombre_dislikes"><?php echo $voteTotal; ?></span>
             </div>
         <?php endif; ?>
         <?php if (!$likeExiste): ?>

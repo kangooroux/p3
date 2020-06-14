@@ -9,7 +9,7 @@
                 <label for="nom">Nom :</label><input name="nom" type="text" id="nom" maxlength="100" required/><br />
                 <label for="prenom">Prénom :</label><input name="prenom" type="text" id="prenom" maxlength="100" required/><br />
                 <label for="userName">Nom d'utilisateur :</label><input name="userName" type="text" id="userName" maxlength="30" pattern="[A-Za-z0-9_]{4,30}" required/><br />
-                <p class="exigences_saisies"> *Votre nom d'utilisateur doit comporter au moins 4 caractères et un maximum de 30 caractères. Ne peut comporter que les lettres de a à z et les chiffres de 0 à 9.</p>
+                <p class="exigences_saisies"> *Votre nom d'utilisateur doit comporter au moins 4 caractères et un maximum de 30 caractères. Ne peut comporter que des lettres de a à z en majuscules et/ou en minuscules, et des chiffres de 0 à 9.</p>
                 <?php if (isset($afficherDoublon)): ?>
                 <p class="champ_alerte">* Identifiant déja utilisé</p>
                 <?php endif; ?>

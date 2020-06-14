@@ -17,11 +17,11 @@
                   <label for="prenom">Prenom</label><input type="text" name="prenom" id="prenom" value="<?php echo $infosCompte['prenom']; ?>" maxlength="100" required/>
                   <?php if (isset($identifiantConcordance)): ?>
                       <label for="user_name">Nom d'utilisateur</label><input type="text" name="user_name" id="user_name" value="<?php echo $userName; ?>" maxlength="30" pattern="[A-Za-z0-9_]{4,30}" required/>
-                      <p class="exigences_saisies"> *Votre nom d'utilisateur doit comporter au moins 4 caractères et un maximum de 30 caractères. Ne peut comporter que les lettres de a à z et les chiffres de 0 à 9.</p>
+                      <p class="exigences_saisies"> *Votre nom d'utilisateur doit comporter au moins 4 caractères et un maximum de 30 caractères. Ne peut comporter que des lettres de a à z en majuscules et/ou en minuscules, et des chiffres de 0 à 9.</p>
                       <p class="champ_alerte">* Nom d'utilisateur déja utilisé</p>
                   <?php else: ?>
                       <label for="user_name">Nom d'utilisateur</label><input type="text" name="user_name" id="user_name" value="<?php echo $infosCompte['user_name']; ?>" maxlength="30" pattern="[A-Za-z0-9_]{4,30}" required/>
-                      <p class="exigences_saisies"> *Votre nom d'utilisateur doit comporter au moins 4 caractères et un maximum de 30 caractères. Ne peut comporter que les lettres de a à z et les chiffres de 0 à 9.</p>
+                      <p class="exigences_saisies"> *Votre nom d'utilisateur doit comporter au moins 4 caractères et un maximum de 30 caractères. Ne peut comporter que des lettres de a à z en majuscules et/ou en minuscules, et des chiffres de 0 à 9.</p>
                   <?php endif; ?>
                   <input type="submit" name="maj" value="Mettre à jour">
             </fieldset>
